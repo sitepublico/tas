@@ -1,0 +1,13 @@
+{% extends "base.njk" %}
+{% block content %}
+<h1>{{ title }}</h1>
+<p>Total de categorias: {{ collections.tecnologiasCategorias.length }}</p>
+<ul>
+  {% for categoria in collections.tecnologiasCategorias %}
+    <li>
+      <h2><a href="{{ categoria.url }}">{{ categoria.data.title }}</a></h2>
+      <p>{{ categoria.data.descricao_categoria }}</p>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

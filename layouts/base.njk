@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title }}</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Início</a></li>
+        <li><a href="/tecnologias/">Tecnologias</a></li>
+        <li><a href="/recursos/">Recursos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  {% block content %}{% endblock %}
+
+  <footer>
+    <nav>
+      <ul>
+        <li><a href="/">Início</a></li>
+        <li><a href="/tecnologias/">Tecnologias</a></li>
+        <li><a href="/recursos/">Recursos</a></li>
+        <li><a href="/sobre/">Sobre</a></li>
+        <li><a href="/contato/">Contato</a></li>
+        <li><a href="/tecnologias-assistivas/">Tecnologias Assistivas</a></li>
+      </ul>
+    </nav>
+    <p>&copy; {{ eleventy.year }} Catálogo de Tecnologias Assistivas para Surdos</p>
+  </footer>
+</body>
+</html>

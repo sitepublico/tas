@@ -1,0 +1,30 @@
+{
+  "name": "tecnologias-assistivas-para-surdos",
+  "version": "0.0.1",
+  "description": "Site estático com tecnologias assistivas para promoção de acessibilidade linguística para surdos em sala de aula. Também contém links de recursos pedagógicos relacionados à educação de surdos.",
+  "main": "index.js",
+  "scripts": {
+    "convert": "node processar-conteudo.js",
+    "build": "eleventy",
+    "serve": "eleventy --serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sitepublico/tas.git"
+  },
+  "keywords": [
+    "tecnologias",
+    "assistivas",
+    "educação",
+    "de",
+    "surdos",
+    "repositório",
+    "online"
+  ],
+  "author": "paulo.vanderley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sitepublico/tas/issues"
+  },
+  "homepage": "https://github.com/sitepublico/tas#readme"
+}
