@@ -1,0 +1,2927 @@
+<!-- templates/template.njk -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <!-- Meta tags for character encoding and responsiveness -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/tas/">
+
+  <title>
+    
+    Página Inicial
+    
+    - Tecnologias Assistivas para Surdos
+  </title>
+
+  <!-- Bootstrap CSS for styling -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+  <!-- <link rel="stylesheet" href="assets/css/styles.css"> -->
+  <style>
+    :root {
+      --default: #00bcf2;
+      --default-dark: #016b88;
+      --border-color: #E7EAF0;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    body * {
+      border-color: var(--border-color);
+    }
+
+    a {
+      color: var(--default);
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+      color: var(--default-dark);
+    }
+
+    .text-gradient {
+      background: linear-gradient(to right, #00bcf2, #00b294);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+    }
+
+    .btn-outline-gradient {
+      border: none;
+      outline: none;
+      position: relative;
+      z-index: 1;
+      border-radius: 5px;
+      background: linear-gradient(to right, #00bcf2, #00b294);
+      cursor: pointer;
+    }
+
+    .btn-outline-gradient::before {
+      content: "";
+      position: absolute;
+      left: 1px;
+      right: 1px;
+      top: 1px;
+      bottom: 1px;
+      border-radius: 4px;
+      background-color: white;
+      z-index: -1;
+      transition: 200ms;
+    }
+
+    .btn-outline-gradient::after {
+      content: attr(data);
+      font-size: 16px;
+      background: linear-gradient(to left, #00bcf2, #00b294);
+      -webkit-background-clip: text;
+      color: transparent;
+      transition: 200ms;
+    }
+
+    .btn-outline-gradient:hover::before {
+      opacity: 50%;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+    }
+
+    .btn-outline-gradient:hover::after {
+      color: #fff;
+    }
+
+    .btn-white {
+      color: #00b294;
+      background-color: #fff;
+    }
+
+    .btn-white:hover,
+    .btn-white:focus,
+    .btn-white:active {
+      background-color: #00bcf2;
+      color: #fff;
+    }
+
+    .has-search .form-control {
+      padding-left: 2.375rem;
+      box-shadow: 0px 1px 2px rgba(50, 50, 71, .08);
+      border-radius: 0.8rem;
+    }
+
+    .has-search .form-control-icon {
+      position: absolute;
+      z-index: 2;
+      display: block;
+      width: 2.5rem;
+      height: 2.5rem;
+      line-height: 3.7rem;
+      text-align: center;
+      pointer-events: none;
+      color: #aaa;
+    }
+
+    .has-search input:focus {
+      border-color: var(--default);
+    }
+
+    .container-md {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .card-hover:hover,
+    .card-hover:focus,
+    .card-hover:active {
+      border-color: rgba(0, 190, 242, 0.5);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .form-control-lg {
+      min-height: calc(1.3em + 2rem + 2px);
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      border-radius: .5rem;
+    }
+
+    .dropdown button,
+    .btn-shadow {
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075)
+    }
+
+    .btn-outline-secondary,
+    .card,
+    input,
+    hr {
+      border-color: var(--border-color);
+    }
+
+    .text-default {
+      color: var(--default);
+    }
+
+    /* Botão padrão */
+    .btn-default {
+      background-color: var(--default);
+      border: none;
+      color: white;
+    }
+
+    .btn-default:hover,
+    .btn-default:focus,
+    .btn-default:active,
+    .btn-outline-default:hover,
+    .btn-outline-default:focus,
+    .btn-outline-default:active,
+    .btn-link-default:hover,
+    .btn-link-default:focus,
+    .btn-link-default:active {
+      background-color: var(--default-dark);
+      color: white;
+    }
+
+    /* Botão Outline */
+    .btn-outline-default {
+      background-color: transparent;
+      border: 2px solid var(--default);
+      color: var(--default);
+    }
+
+    /* Botão Link */
+    .btn-link-default {
+      color: var(--default);
+    }
+
+    /* Fundo gradiente roxo */
+    .bg-gradiente {
+      background: linear-gradient(135deg, #00bef225 60%, #00b29425 100%);
+    }
+
+    /* Definir borda padrão */
+
+    .card,
+    .card-body {
+      border-radius: .9rem
+    }
+  </style>
+
+  <!-- Additional head content can be added by child templates -->
+  
+</head>
+
+<body class="background-image">
+  <!-- Top Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-25" id="topo">
+    <div class="container">
+      <!-- Brand/logo -->
+      <a class="navbar-brand" href="index.html">
+        <img src="assets/images/logo.png" alt="Tecnologias Assistivas para Surdos">
+      </a>
+      <!-- Toggler/collapsible button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <!-- Navigation links -->
+          <li class="nav-item">
+            <a class="nav-link me-3" href="index.html">Tecnologias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link me-3 mb-2" href="recursos/">Recursos Pedagógicos</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-gradient" href="contato/" data="Indique uma Tecnologia"
+              title="Indique uma Tecnologia"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="my-5">
+    <!-- Content block to be overridden by child templates -->
+    
+
+<!-- destaque -->
+
+<div class="container container-md">
+  <div class="row g-4 my-5">
+    <div class="col-12 text-center">
+      <h1 class="display-3 lh-1 fw-bold mb-4">Descubra Tecnologias para um
+        <span class="text-gradient">Ensino Mais Inclusivo</span>
+        para Surdos
+      </h1>
+      <p class="fs-5 text-secondary">Encontre tecnologias assistivas que promovem a acessibilidade linguística para
+        estudantes surdos em sala de aula, facilitando a comunicação e o aprendizado. Explore o catálogo, veja recursos
+        pedagógicos e colabore sugerindo novas tecnologias!</p>
+    </div>
+  </div>
+  <!-- busca -->
+  <div id="filtros" class="row g-4 mb-5">
+    <div class="col-12">
+      <!-- Actual search box -->
+      <div class="form-group has-search">
+        <span class="bi bi-search form-control-icon"></span>
+        <input id="search-input" type="text" class="form-control form-control-lg"
+          placeholder="digite uma palavra chave" />
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="d-flex flex-wrap justify-content-center">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <div class="dropdown">
+          <button id="categoria-filter" class="btn btn-outline-secondary btn-sm dropdown-toggle me-2 mb-2 opacity-75"
+            type="button" data-bs-toggle="dropdown" aria-expanded="false" data-label="Categoria">
+            Categoria
+          </button>
+          <ul class="dropdown-menu">
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Comunicação Assistiva">Comunicação Assistiva</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Libras: Aprendizagem">Libras: Aprendizagem</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Libras: Dicionários e Glossários">Libras: Dicionários e Glossários</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Libras: Tradução e Interpretação">Libras: Tradução e Interpretação</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Transcrição de Fala">Transcrição de Fala</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Videoconferência">Videoconferência</a>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="dropdown">
+          <button id="etapa-filter" class="btn btn-outline-secondary btn-sm dropdown-toggle me-2 mb-2 opacity-75"
+            type="button" data-bs-toggle="dropdown" aria-expanded="false" data-label="Etapa de Ensino">
+            Etapa de Ensino
+          </button>
+          <ul class="dropdown-menu">
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Educação Infantil">Educação Infantil</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Ensino Fundamental">Ensino Fundamental</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Ensino Médio">Ensino Médio</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="EJA">EJA</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Ensino Superior">Ensino Superior</a>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="dropdown">
+          <button id="custo-filter" class="btn btn-outline-secondary btn-sm dropdown-toggle me-2 mb-2 opacity-75"
+            type="button" data-bs-toggle="dropdown" aria-expanded="false" data-label="Custo">
+            Custo
+          </button>
+          <ul class="dropdown-menu">
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Gratuito">Gratuito</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Gratuito com Limitações">Gratuito com Limitações</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Pago">Pago</a>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="dropdown">
+          <button id="plataforma-filter" class="btn btn-outline-secondary btn-sm dropdown-toggle me-2 mb-2 opacity-75"
+            type="button" data-bs-toggle="dropdown" aria-expanded="false" data-label="Plataforma">
+            Plataforma
+          </button>
+          <ul class="dropdown-menu">
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Aplicativo">Aplicativo</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Site">Site</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Desktop">Desktop</a>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="dropdown">
+          <button id="requerInternet-filter"
+            class="btn btn-outline-secondary btn-sm dropdown-toggle me-2 mb-2 opacity-75" type="button"
+            data-bs-toggle="dropdown" aria-expanded="false" data-label="Internet">
+            Internet
+          </button>
+          <ul class="dropdown-menu">
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Requer Internet">Requer Internet</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Requer Internet Parcialmente">Requer Internet Parcialmente</a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item" href="#" data-value="Não Requer Internet">Não Requer Internet</a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      <button id="clear-filters" class="btn btn-warning btn-sm mx-auto" style="display:none"><i class="bi bi-x"></i>
+        Limpar Filtros</button>
+    </div>
+  </div>
+</div>
+<!-- lista tecnologias -->
+<div id="tech-list" class="container mb-5">
+  <div class="list row g-4">
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Transcrição Instantânea"
+      data-descricao="A Transcrição Instantânea é uma tecnologia assistiva que utiliza smartphones ou tablets Android para transcrever falas e sons em tempo real, tornando as conversas e sons mais acessíveis para pessoas surdas ou com perda auditiva. Em contextos educacionais, essa tecnologia pode ser usada em salas de aula para facilitar a comunicação e o acompanhamento de conteúdo, permitindo que estudantes surdos sigam as aulas em tempo real, sem depender exclusivamente de intérpretes de Libras." data-categoria="Transcrição de Fala"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo"
+      data-requer_internet="Parcialmente">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/transcricao-instantanea-icon.jpg" alt="Transcrição Instantânea" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/transcricao-instantanea/" class="stretched-link text-decoration-none text-dark">
+                  Transcrição Instantâne...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Transcrição de Fala</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Transcrição em tempo real com suporte offline.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Parcialmente
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Speech To Text | Voice To Text"
+      data-descricao="O Speech To Text é um aplicativo online que converte fala em texto em tempo real, oferecendo suporte para mais de 30 idiomas. Como tecnologia assistiva, pode ser usado por pessoas surdas para acompanhar falas em sala de aula, permitindo que elas acompanhem as explicações em tempo real por meio de transcrições automáticas. O aplicativo também permite salvar o texto transcrito como arquivo de texto ou PDF." data-categoria="Transcrição de Fala"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito com Limitações"
+      data-plataforma="Aplicativo"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/speech-to-text-voice-to-text-icon.jpg" alt="Speech To Text | Voice To Text" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/speech-to-text-voice-to-text/" class="stretched-link text-decoration-none text-dark">
+                  Speech To Text | Voice...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Transcrição de Fala</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Aplicativo que converte fala em texto em tempo real com suporte para mais de 30 idiomas.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito com Limitações
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Transcreva ao vivo"
+      data-descricao="O &#39;Transcreva ao vivo&#39; é um aplicativo de voz para texto para dispositivos iOS, projetado para transcrever falas em tempo real. Com suporte para mais de 60 idiomas, o aplicativo pode ser usado como tecnologia assistiva para pessoas surdas ou com deficiência auditiva em sala de aula, permitindo a legendagem ao vivo e a criação de notas a partir de falas. O aplicativo oferece suporte offline para mais de 10 idiomas e permite salvar e compartilhar transcrições." data-categoria="Transcrição de Fala"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Pago"
+      data-plataforma="Aplicativo"
+      data-requer_internet="Parcialmente">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/transcreva-ao-vivo-icon.jpg" alt="Transcreva ao vivo" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/transcreva-ao-vivo/" class="stretched-link text-decoration-none text-dark">
+                  Transcreva ao vivo
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Transcrição de Fala</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Aplicativo para iOS que transcreve falas em tempo real e suporte para mais de 60 idiomas.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Pago
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Parcialmente
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="SENAI Libras"
+      data-descricao="O SENAI LIBRAS é um aplicativo que funciona como glossário de termos técnicos acessíveis em formato 3D. Com milhares de vocábulos, o app foi desenvolvido para apoiar docentes, alunos e profissionais do SENAI na tradução de termos técnicos da língua portuguesa para Libras. A tecnologia é uma ferramenta importante para otimizar os processos de comunicação em ambientes educacionais, especialmente em cursos de educação profissional, facilitando o acesso de pessoas com deficiência auditiva/surdas ao conteúdo técnico." data-categoria="Libras: Dicionários e Glossários"
+      data-etapa="Ensino Médio; EJA; Ensino Superior;"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo; Aplicativo"
+      data-requer_internet="Parcialmente">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/senai-libras-icon.jpg" alt="SENAI Libras" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/senai-libras/" class="stretched-link text-decoration-none text-dark">
+                  SENAI Libras
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Libras: Dicionários e Glossários</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Glossário de termos técnicos para cursos de educação profissional.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Parcialmente
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Spread The Sign"
+      data-descricao="O &#39;Spread The Sign&#39; é o maior dicionário de línguas gestuais do mundo, com mais de 200.000 gestos em diversas línguas de sinais, incluindo a Libras. O aplicativo possibilita a tradução de palavras para diferentes línguas de sinais através de vídeos, tornando-se uma importante ferramenta de acessibilidade para pessoas surdas. É especialmente útil em contextos educacionais, permitindo que estudantes surdos aprendam ou comparem gestos em diversas línguas de sinais, enriquecendo sua compreensão cultural e linguística." data-categoria="Libras: Dicionários e Glossários"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito com Limitações"
+      data-plataforma="Aplicativo; Site"
+      data-requer_internet="Parcialmente">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/spread-the-sign-icon.jpg" alt="Spread The Sign" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/spread-the-sign/" class="stretched-link text-decoration-none text-dark">
+                  Spread The Sign
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Libras: Dicionários e Glossários</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Permite traduzir de palavras para diferentes línguas de sinais através de vídeos.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito com Limitações
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Parcialmente
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Dicionário da Língua Brasileira de Sinais V3 - 2011"
+      data-descricao="O &#39;Dicionário da Língua Brasileira de Sinais V3 - 2011&#39; é um dicionário bilíngue, Português x Libras e Libras x Português, que oferece 8.000 sinais em vídeos animados. Criado por especialistas, o dicionário serve como uma ferramenta de apoio à educação de alunos surdos e como referência para pais, professores e a comunidade em geral. Disponível online através do site do INES, o dicionário é pioneiro na apresentação da Libras em formato virtual, facilitando a visualização dos sinais e sua aplicabilidade em contextos reais." data-categoria="Libras: Dicionários e Glossários"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito"
+      data-plataforma="Site"
+      data-requer_internet="Parcialmente">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/dicionario-da-lingua-brasileira-de-sinais-2011-icon.jpg" alt="Dicionário da Língua Brasileira de Sinais V3 - 2011" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/dicionario-da-lingua-brasileira-de-sinais-2011/" class="stretched-link text-decoration-none text-dark">
+                  Dicionário da Língua B...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Libras: Dicionários e Glossários</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Site com dicionário bilíngue (Português x Libras e Libras x Português).</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Parcialmente
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="ACESSIBILIDADE NA CÂMARA: Dicionário de Libras"
+      data-descricao="O &#39;ACESSIBILIDADE NA CÂMARA: Dicionário de Libras&#39; é um dicionário de termos político-legislativos em Libras, disponível no site da Câmara dos Deputados. Com mais de 1.200 sinais em vídeos animados, o dicionário visa facilitar o entendimento da comunidade surda sobre o papel do Legislativo e as atividades dos deputados, sendo uma ferramenta de educação político-legislativa e de cidadania. O projeto é fruto de uma parceria entre a Câmara, a UFPB e o MPOG, e é parte do projeto Suíte VLibras, que amplia o acesso a conteúdos digitais para Libras." data-categoria="Libras: Dicionários e Glossários"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito"
+      data-plataforma="Site"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/acessibilidade-na-camara-dicionario-de-libras-icon.jpg" alt="ACESSIBILIDADE NA CÂMARA: Dicionário de Libras" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/acessibilidade-na-camara-dicionario-de-libras/" class="stretched-link text-decoration-none text-dark">
+                  ACESSIBILIDADE NA CÂMA...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Libras: Dicionários e Glossários</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Site com dicionário de termos político-legislativos em Libras.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Sinalário em Libras"
+      data-descricao="O &#39;Sinalário em Libras&#39; é um aplicativo que lista palavras em Língua Portuguesa e mostra o sinal correspondente em Libras através de vídeos. O objetivo é promover a comunicação entre surdos e ouvintes, utilizando processos de gamificação e métricas de ensino baseadas na BNCC (Base Nacional Comum Curricular). A tecnologia busca resolver a dificuldade de comunicação e aquisição linguística do aluno surdo de forma atraente, simples e divertida." data-categoria="Libras: Aprendizagem"
+      data-etapa="Ensino Fundamental; Ensino Fundamental"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/sinalario-em-libras-icon.jpg" alt="Sinalário em Libras" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/sinalario-em-libras/" class="stretched-link text-decoration-none text-dark">
+                  Sinalário em Libras
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Libras: Aprendizagem</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Lista palavras em Língua Portuguesa e mostra o sinal correspondente em vídeo.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Quiz de Libras"
+      data-descricao="O &#39;Quiz de Libras&#39; é um aplicativo educativo que auxilia no aprendizado do alfabeto e dos números em Libras (Língua Brasileira de Sinais). O app oferece quizzes com questões de múltipla escolha e verdadeiro ou falso para testar o conhecimento do usuário. Além disso, há um módulo de aprendizado onde são mostrados todos os sinais, permitindo ao usuário fixar melhor o conteúdo. A tecnologia é útil para auxiliar a escrita e leitura em Libras, especialmente para iniciantes." data-categoria="Libras: Aprendizagem"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo"
+      data-requer_internet="Não">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/quiz-de-libras-icon.jpg" alt="Quiz de Libras" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/quiz-de-libras/" class="stretched-link text-decoration-none text-dark">
+                  Quiz de Libras
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Libras: Aprendizagem</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Quiz com módulo onde são mostrados todos os sinais em Libras.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Não
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Libras Para Todos"
+      data-descricao="O &#39;Libras Para Todos&#39; é um aplicativo que oferece acesso a mais de 5.700 palavras em Libras, além de permitir o aprendizado do alfabeto manual e dos números em Libras. O aplicativo também inclui um teclado de escrita em Libras, proporcionando uma experiência interativa para os usuários que desejam treinar seus conhecimentos. A ferramenta é útil para auxiliar a comunicação e o aprendizado de Libras, especialmente em contextos educacionais." data-categoria="Libras: Aprendizagem"
+      data-etapa="Ensino Fundamental; Ensino Fundamental; Ensino Médio; EJA"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/libras-para-todos-icon.jpg" alt="Libras Para Todos" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/libras-para-todos/" class="stretched-link text-decoration-none text-dark">
+                  Libras Para Todos
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Libras: Aprendizagem</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Oferece milhares de palavras em Libras, alfabeto manual e teclado de escrita em Libras.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="LibrasTI"
+      data-descricao="O &#39;LibrasTI&#39; é um aplicativo desenvolvido pelo PET-SI/UFRRJ em parceria com o NAPNE do IFSC, com o objetivo de promover a inclusão de surdos no campo tecnológico. O aplicativo oferece um glossário de termos técnicos da área de tecnologia da informação em Libras, através de vídeos que mostram os sinais correspondentes. Voltado para a plataforma Android, o LibrasTI é totalmente gratuito e pode ser utilizado offline, o que permite seu uso em qualquer lugar. A ferramenta é destinada a alunos, professores e profissionais da área de TI." data-categoria="Libras: Dicionários e Glossários"
+      data-etapa="Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo"
+      data-requer_internet="Não">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/librasti-icon.jpg" alt="LibrasTI" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/librasti/" class="stretched-link text-decoration-none text-dark">
+                  LibrasTI
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Libras: Dicionários e Glossários</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Traz um glossário de termos técnicos da área de tecnologia da informação em Libras.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Não
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Dicionário de Sinais da Área de Tecnologia"
+      data-descricao="O &#39;Dicionário de Sinais da Área de Tecnologia&#39; é um site que oferece cerca de 100 sinais específicos relacionados à tecnologia e informática em Libras. Criado para atender às necessidades de profissionais surdos, tradutores e intérpretes de Libras, bem como estudantes de áreas tecnológicas, o dicionário visa facilitar a tradução e interpretação de termos técnicos, promovendo a inclusão e o desenvolvimento profissional de pessoas surdas. O site também serve como um recurso de consulta para profissionais da área." data-categoria="Libras: Dicionários e Glossários"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito"
+      data-plataforma="Site"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/dicionario-de-sinais-da-area-de-tecnologia-icon.jpg" alt="Dicionário de Sinais da Área de Tecnologia" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/dicionario-de-sinais-da-area-de-tecnologia/" class="stretched-link text-decoration-none text-dark">
+                  Dicionário de Sinais d...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Libras: Dicionários e Glossários</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Site que oferece sinais específicos relacionados à tecnologia e informática em Libras.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Dicionário da Língua Brasileira de Sinais"
+      data-descricao="O &#39;Dicionário da Língua Brasileira de Sinais V3 - 2011&#39; é um dicionário bilíngue, Português x Libras e Libras x Português, que oferece 8.000 sinais em vídeos animados. Criado por especialistas, o dicionário serve como uma ferramenta de apoio à educação de alunos surdos e como referência para pais, professores e a comunidade em geral. Disponível online através do site do INES, o dicionário é pioneiro na apresentação da Libras em formato virtual, facilitando a visualização dos sinais e sua aplicabilidade em contextos reais." data-categoria="Transcrição de Fala"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito"
+      data-plataforma="Site"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/dicionario-da-lingua-brasileira-de-sinais-icon.jpg" alt="Dicionário da Língua Brasileira de Sinais" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/dicionario-da-lingua-brasileira-de-sinais/" class="stretched-link text-decoration-none text-dark">
+                  Dicionário da Língua B...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Transcrição de Fala</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Site com milhares de sinais de Libras no formato de vídeo.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Ava: Transcriptions &amp; Captions"
+      data-descricao="O &#39;Ava: Transcriptions &amp; Captions&#39; é um aplicativo que utiliza legendas ao vivo para transcrever voz em texto em tempo real, proporcionando acessibilidade para pessoas surdas ou com perda auditiva. O aplicativo pode ser utilizado em diversas situações, como salas de aula, reuniões de negócios, consultas médicas e eventos. Ava oferece transcrições de áudio em tempo real, com uma taxa de erro de aproximadamente 5 em cada 100 palavras. Com o recurso Ava Scribe, a precisão pode chegar a 1 erro em cada 100 palavras." data-categoria="Transcrição de Fala"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito com Limitações"
+      data-plataforma="Aplicativo; Aplicativo"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/ava-icon.jpg" alt="Ava: Transcriptions &amp; Captions" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/ava/" class="stretched-link text-decoration-none text-dark">
+                  Ava: Transcriptions &amp; ...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Transcrição de Fala</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Transcrições de áudio em tempo real com baixa taxa de erros.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito com Limitações
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Live Transcribe"
+      data-descricao="O &#39;Live Transcribe&#39; é um aplicativo de legendagem ao vivo que transcreve a fala em texto em tempo real, oferecendo suporte em mais de 70 idiomas. Desenvolvido para ser simples e fácil de usar, é uma ferramenta essencial para pessoas surdas ou com perda auditiva, permitindo a comunicação em diversos contextos, como salas de aula, consultas médicas e reuniões. O aplicativo também oferece suporte offline para 9 idiomas, tornando-o útil em locais sem acesso à internet." data-categoria="Transcrição de Fala"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo"
+      data-requer_internet="Não">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/live-transcribe-icon.jpg" alt="Live Transcribe" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/live-transcribe/" class="stretched-link text-decoration-none text-dark">
+                  Live Transcribe
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Transcrição de Fala</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Utilize o smartphone ou tablet para transcrever falas e sons em tempo real.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Não
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Microsoft Translate"
+      data-descricao="O &#39;Microsoft Translate&#39; é um aplicativo de tradução pessoal gratuito que suporta mais de 70 idiomas, permitindo a tradução de texto, voz, conversas, fotos e capturas de tela. Pode ser utilizado para transcrever fala em texto e transformar texto em voz, tornando-se uma ferramenta útil para pessoas surdas em diferentes contextos, como sala de aula, reuniões e viagens. O aplicativo também permite o download de idiomas para uso offline, o que amplia sua utilidade em locais sem conexão à internet." data-categoria="Transcrição de Fala"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo; Aplicativo; Windows"
+      data-requer_internet="Não">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/microsoft-translate-icon.jpg" alt="Microsoft Translate" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/microsoft-translate/" class="stretched-link text-decoration-none text-dark">
+                  Microsoft Translate
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Transcrição de Fala</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>App de tradução que pode ser usado para converter fala em texto ou texto em voz.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Não
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Tradutor de Conversas"
+      data-descricao="O &#39;Tradutor de Conversas&#39; é um aplicativo que oferece tradução instantânea de voz e texto, facilitando a comunicação em ambientes multilíngues, como viagens, reuniões de negócios e conversas diárias. Com funcionalidades como tradução por voz, interpretação, cópia e compartilhamento, o app é útil para pessoas surdas que precisam de suporte na comunicação em diferentes contextos. A função de transcrição de fala em texto também é uma possibilidade, tornando o aplicativo versátil em diversas situações." data-categoria="Transcrição de Fala"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito com Limitações"
+      data-plataforma="Aplicativo"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/tradutor-de-conversas-icon.jpg" alt="Tradutor de Conversas" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/tradutor-de-conversas/" class="stretched-link text-decoration-none text-dark">
+                  Tradutor de Conversas
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Transcrição de Fala</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Tradutor com função de transcrição de fala em texto.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito com Limitações
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Hand Talk Tradutor para Libras"
+      data-descricao="O &#39;Hand Talk Tradutor para Libras&#39; é um aplicativo que utiliza personagens virtuais, como Hugo e Maya, para traduzir texto e voz em Língua Brasileira de Sinais (Libras) e Língua de Sinais Americana (ASL). O app, premiado pela ONU, permite que os usuários aprendam e pratiquem Libras de forma divertida e eficiente, seja para se comunicar com surdos, reforçar o vocabulário ou desenvolver novas habilidades linguísticas. O aplicativo também oferece um dicionário de sinais e vídeos educativos." data-categoria="Libras: Tradução e Interpretação"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental; Ensino Médio; EJA"
+      data-custo="Gratuito com Limitações"
+      data-plataforma="Aplicativo; Aplicativo"
+      data-requer_internet="Não">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/hand-talk-icon.jpg" alt="Hand Talk Tradutor para Libras" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/hand-talk/" class="stretched-link text-decoration-none text-dark">
+                  Hand Talk Tradutor par...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Libras: Tradução e Interpretação</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>App que utiliza personagens para traduzir texto e voz em Libras.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito com Limitações
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Não
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Virginia ajuda deficientes"
+      data-descricao="O &#39;Virginia ajuda deficientes&#39; é um aplicativo que transforma tablets ou smartphones em comunicadores, permitindo que pessoas com dificuldades na fala, como indivíduos com deficiência congênita, adquirida ou temporária, possam se comunicar. Através da síntese vocal do dispositivo, o usuário pode fazer pedidos e comunicar necessidades. O app é especialmente útil para pessoas sem cordas vocais ou que estão internadas e não conseguem se comunicar verbalmente." data-categoria="Comunicação Assistiva"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental; Ensino Médio; EJA"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo"
+      data-requer_internet="Parcialmente">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/virginia-icon.jpg" alt="Virginia ajuda deficientes" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/virginia/" class="stretched-link text-decoration-none text-dark">
+                  Virginia ajuda deficie...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Comunicação Assistiva</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Permite que as pessoas possam fazer pedidos e comunicar necessidades.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Parcialmente
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="TurboScribe"
+      data-descricao="TurboScribe é um serviço de transcrição por IA que converte áudio e vídeo em texto com alta precisão (99,8%) em mais de 98 idiomas. Ele oferece transcrição ilimitada de arquivos de áudio e vídeo, sendo útil para surdos ou deficientes auditivos ao transcrever conteúdo falado em texto. O plano gratuito permite 3 transcrições diárias, cada uma com até 30 minutos." data-categoria="Transcrição de Fala"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito com Limitações"
+      data-plataforma="Site"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/turboscribe-icon.jpg" alt="TurboScribe" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/turboscribe/" class="stretched-link text-decoration-none text-dark">
+                  TurboScribe
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Transcrição de Fala</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Transcrição de arquivos de áudio e vídeo por IA com alta precisão.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito com Limitações
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Fireflies: AI notetaker"
+      data-descricao="O &#39;Fireflies: AI notetaker&#39; é uma ferramenta de transcrição e anotação automática para reuniões e conversas de voz. Ele permite gravar e transcrever automaticamente reuniões em vários aplicativos de videoconferência, como Google Meet, Zoom e Microsoft Teams, e oferece funcionalidades de análise, pesquisa e colaboração. É uma solução poderosa para auxiliar pessoas surdas, permitindo que acompanhem e revisem reuniões e aulas através de transcrições precisas e rápidas." data-categoria="Transcrição de Fala"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Pago"
+      data-plataforma="Aplicativo; Aplicativo"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/fireflies-icon.jpg" alt="Fireflies: AI notetaker" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/fireflies/" class="stretched-link text-decoration-none text-dark">
+                  Fireflies: AI notetake...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Transcrição de Fala</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Permite gravar e transcrever aulas e reuniões em aplicativos como Google Meet.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Pago
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="SpeechNotes"
+      data-descricao="O &#39;SpeechNotes&#39; é um bloco de notas com conversor de fala em texto, projetado para transformar ditados em texto de forma contínua e eficiente. Com comandos de voz, o aplicativo é útil para quem precisa transcrever falas ou reuniões de forma prática, sem a necessidade de fazer login. Ele suporta múltiplos idiomas e funciona melhor quando conectado à internet, embora também opere offline com resultados limitados. É uma ferramenta assistiva útil para surdos, pois permite que o conteúdo falado seja convertido em texto." data-categoria="Transcrição de Fala"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito com Limitações"
+      data-plataforma="Aplicativo; Site"
+      data-requer_internet="Parcialmente">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/speechnotes-icon.jpg" alt="SpeechNotes" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/speechnotes/" class="stretched-link text-decoration-none text-dark">
+                  SpeechNotes
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Transcrição de Fala</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Permite que o conteúdo falado seja convertido em texto, com suporte limitado offline.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito com Limitações
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Parcialmente
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="SymboTalk - AAC Talker"
+      data-descricao="O &#39;SymboTalk - AAC Talker&#39; é um sistema de comunicação aumentativa e alternativa (AAC) que utiliza símbolos para facilitar a comunicação de pessoas que possuem dificuldades na fala, como autistas, pessoas com síndrome de Down, ELA, entre outros. Através de pranchas de comunicação personalizáveis, os usuários podem selecionar símbolos que são convertidos em fala. O site permite a criação de pranchas e símbolos próprios, além de oferecer uma biblioteca com mais de 60.000 imagens para escolher." data-categoria="Comunicação Assistiva"
+      data-etapa="Educação Infantil; Ensino Fundamental"
+      data-custo="Gratuito com Limitações"
+      data-plataforma="Site"
+      data-requer_internet="Não">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/symbotalk-icon.jpg" alt="SymboTalk - AAC Talker" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/symbotalk/" class="stretched-link text-decoration-none text-dark">
+                  SymboTalk - AAC Talker
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Comunicação Assistiva</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Usa símbolos para facilitar a comunicação, e pode ser personalizado.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito com Limitações
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Não
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Expressia: Falar e Aprender"
+      data-descricao="O &quot;Expressia: Falar e Aprender&quot; é um aplicativo voltado para comunicação alternativa e atividades adaptadas. É ideal para pessoas que têm dificuldades de fala, como autistas, indivíduos com dislexia, TDAH, Alzheimer e outras necessidades especiais. Ele permite a criação de pranchas personalizadas com imagens, sons e voz, facilitando a comunicação e o aprendizado em sala de aula. O aplicativo também oferece uma biblioteca online de pranchas e atividades prontas para uso." data-categoria="Comunicação Assistiva"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito com Limitações"
+      data-plataforma="Aplicativo; Site"
+      data-requer_internet="Parcialmente">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/expressia-icon.jpg" alt="Expressia: Falar e Aprender" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/expressia/" class="stretched-link text-decoration-none text-dark">
+                  Expressia: Falar e Apr...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Comunicação Assistiva</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Site para comunicação alternativa que permite a criação de pranchas personalizadas.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito com Limitações
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Parcialmente
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Mudo Que Fala"
+      data-descricao="&quot;Mudo Que Fala&quot; é um aplicativo desenvolvido para auxiliar pessoas que não podem falar, permitindo a conversão de texto em voz. Ele é útil para surdos que não dominam a Libras, mas são alfabetizados em português, e para aqueles que precisam de um suporte para a comunicação, como pessoas que passaram por cirurgias ou têm outras limitações temporárias ou permanentes na fala. O aplicativo oferece categorias de palavras pré-definidas e a possibilidade de adicionar novas palavras, com a reprodução do som correspondente." data-categoria="Comunicação Assistiva"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo"
+      data-requer_internet="Não">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/mudo-que-fala-icon.jpg" alt="Mudo Que Fala" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/mudo-que-fala/" class="stretched-link text-decoration-none text-dark">
+                  Mudo Que Fala
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Comunicação Assistiva</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>App que permite a conversão de texto em voz, com possibilidade de adicionar novas palavras.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Não
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Rybená Tradutor Libras Voz"
+      data-descricao="&quot;Rybená Tradutor Libras Voz&quot; é um aplicativo de tecnologia assistiva desenvolvido no Brasil que traduz textos do português para Libras e converte português escrito em voz falada. Ele é compatível com os principais navegadores e dispositivos móveis, proporcionando acessibilidade a pessoas com deficiência auditiva para entender textos na internet. Além disso, o aplicativo oferece recursos para aprendizado de Libras." data-categoria="Libras: Tradução e Interpretação"
+      data-etapa="Ensino Fundamental; Ensino Fundamental"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/rybena-icon.jpg" alt="Rybená Tradutor Libras Voz" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/rybena/" class="stretched-link text-decoration-none text-dark">
+                  Rybená Tradutor Libras...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Libras: Tradução e Interpretação</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>App que traduz português para Libras e ensina a linguagem de sinais.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="VLibras"
+      data-descricao="O VLibras é uma suíte de ferramentas de código aberto que traduz automaticamente conteúdos digitais em português para a Língua Brasileira de Sinais (Libras). Desenvolvido pela UFPB com apoio de órgãos governamentais, o aplicativo auxilia na comunicação e na disseminação de Libras, sendo compatível com computadores, smartphones e tablets. Ele não substitui um intérprete humano, mas oferece uma maneira acessível de traduzir textos em ambientes digitais." data-categoria="Libras: Tradução e Interpretação"
+      data-etapa="Ensino Fundamental; Ensino Fundamental"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo; Aplicativo"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/vlibras-icon.jpg" alt="VLibras" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/vlibras/" class="stretched-link text-decoration-none text-dark">
+                  VLibras
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Libras: Tradução e Interpretação</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Traduz automaticamente conteúdos em português para Libras.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="GitalkText"
+      data-descricao="O GitalkText é uma ferramenta online gratuita que transcreve automaticamente o áudio de vídeos e aulas ao vivo para texto. Pode ser utilizado em diversas plataformas, como YouTube, palestras e qualquer tipo de áudio reproduzido no computador. É especialmente útil para pessoas surdas, pois converte a fala em texto em tempo real, facilitando a compreensão do conteúdo." data-categoria="Transcrição de Fala"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito"
+      data-plataforma="Site"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/gitalktext-icon.jpg" alt="GitalkText" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/gitalktext/" class="stretched-link text-decoration-none text-dark">
+                  GitalkText
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Transcrição de Fala</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Transcreve áudio do Youtube para texto.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Zapia - Assistente Pessoal IA"
+      data-descricao="Zapia é um assistente pessoal de inteligência artificial projetado para atender às necessidades do Brasil. Entre suas funcionalidades, estão a transcrição de áudios do WhatsApp, pesquisa de produtos e serviços locais, interpretação de fotos, comunicação por áudio, e suporte em diversas tarefas diárias. Ele pode ser uma ferramenta útil para pessoas surdas, oferecendo transcrições de áudio em texto e informações detalhadas sobre produtos e serviços." data-categoria="Comunicação Assistiva"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo; Site"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/zapia-icon.jpg" alt="Zapia - Assistente Pessoal IA" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/zapia/" class="stretched-link text-decoration-none text-dark">
+                  Zapia - Assistente Pes...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Comunicação Assistiva</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Responde perguntas e transcreve audios grátis pelo WhatsApp.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="SpeakLiz: para pessoas com def"
+      data-descricao="SpeakLiz é um aplicativo que utiliza Inteligência Artificial para auxiliar na comunicação de pessoas surdas. Ele oferece quatro principais funcionalidades: alerta de som ambiente, conversão de voz em texto, conversão de texto em voz, e tradução de linguagem de sinais (limitada à linguagem de sinais americana)." data-categoria="Comunicação Assistiva"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental; Ensino Médio; EJA"
+      data-custo="Pago"
+      data-plataforma="Aplicativo; Aplicativo"
+      data-requer_internet="Parcialmente">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/speakliz-icon.jpg" alt="SpeakLiz: para pessoas com def" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/speakliz/" class="stretched-link text-decoration-none text-dark">
+                  SpeakLiz: para pessoas...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Comunicação Assistiva</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>App que ua IA para auxiliar na comunicação de pessoas surdas.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Pago
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Parcialmente
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Ararajuba"
+      data-descricao="Ararajuba é uma ferramenta online gratuita desenvolvida pelo Centro Tecnológico de Acessibilidade (CTA) do IFRS. Ela oferece funcionalidades de fala para texto e texto para fala, possibilitando que o usuário dite um texto que é transcrito em tempo real ou digite um texto para que a ferramenta o leia em voz alta. Essa tecnologia pode ser especialmente útil para surdos em sala de aula ao proporcionar maior acessibilidade à comunicação escrita e falada." data-categoria="Comunicação Assistiva"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito"
+      data-plataforma="Site"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/ararajuba-icon.jpg" alt="Ararajuba" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/ararajuba/" class="stretched-link text-decoration-none text-dark">
+                  Ararajuba
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Comunicação Assistiva</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Site com conversor de fala para texto e texto para fala.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Cboard"
+      data-descricao="Cboard é um aplicativo web gratuito de Comunicação Aumentativa e Alternativa (CAA) voltado para crianças e adultos com problemas de fala e linguagem. Ele auxilia na comunicação utilizando símbolos e conversão de texto em fala. O aplicativo é acessível em várias plataformas, incluindo desktops, tablets e celulares, e pode ser personalizado para atender às necessidades específicas de cada usuário." data-categoria="Comunicação Assistiva"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental; Ensino Médio; EJA"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo; Aplicativo; Site; Windows"
+      data-requer_internet="Não">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/cboard-icon.jpg" alt="Cboard" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/cboard/" class="stretched-link text-decoration-none text-dark">
+                  Cboard
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Comunicação Assistiva</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Ferramenta que auxilia na comunicação usando símbolos e conversão de texto em fala.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Não
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Dolphin"
+      data-descricao="Dolphin é uma ferramenta de comunicação assistiva que permite converter textos escritos em fala e transcrever fala em texto. Voltada para facilitar a comunicação de pessoas com comprometimento na fala e/ou surdas, a ferramenta é simples de usar, gratuita e funciona diretamente no navegador." data-categoria="Comunicação Assistiva"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental; Ensino Médio"
+      data-custo="Gratuito"
+      data-plataforma="Site"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/dolphin-icon.jpg" alt="Dolphin" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/dolphin/" class="stretched-link text-decoration-none text-dark">
+                  Dolphin
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Comunicação Assistiva</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Permite converter textos em fala e transcrever fala em texto diretamente no navegador.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Plaphoons"
+      data-descricao="Plaphoons é uma ferramenta de comunicação assistiva voltada para pessoas com deficiências físicas, como paralisia cerebral, transtornos do espectro autista (TEA) e síndrome de Down. Além de ajudar na comunicação, também pode ser utilizada para o aprendizado de leitura e escrita, e no controle do computador para pessoas com dificuldades motoras. Plaphoons possui versões para Windows e Android, sendo especialmente útil em tablets." data-categoria="Comunicação Assistiva"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental; Ensino Médio"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo; Windows"
+      data-requer_internet="Parcialmente">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/plaphoons-icon.jpg" alt="Plaphoons" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/plaphoons/" class="stretched-link text-decoration-none text-dark">
+                  Plaphoons
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Comunicação Assistiva</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Ajuda na comunicação e no aprendizado de leitura e escrita.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Parcialmente
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Picto4Me"
+      data-descricao="Picto4Me é uma aplicação web que permite criar, executar, compartilhar e conversar através de pranchas de comunicação pictográficas. É projetado para ser simples e poderoso, permitindo que educadores e terapeutas criem tarefas para educação especial e terapia clínica. A ferramenta é integrada ao Google Drive, onde os projetos são armazenados, e oferece uma ampla gama de imagens, além de permitir a busca por pictogramas na web." data-categoria="Comunicação Assistiva"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental; Ensino Médio"
+      data-custo="Gratuito com Limitações"
+      data-plataforma="Site"
+      data-requer_internet="Parcialmente">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/picto4me-icon.jpg" alt="Picto4Me" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/picto4me/" class="stretched-link text-decoration-none text-dark">
+                  Picto4Me
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Comunicação Assistiva</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Permite conversar através de pranchas de comunicação integradas ao Google Drive.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito com Limitações
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Parcialmente
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Colibras"
+      data-descricao="O COLibras é um dicionário colaborativo de Libras (Língua Brasileira de Sinais) desenvolvido pela Universidade Federal do Rio Grande do Norte (UFRN). Ele permite que usuários adicionem e acessem sinais de Libras, contribuindo para a expansão do vocabulário disponível. O site é gratuito e de fácil utilização, com a opção de pesquisar palavras e visualizar os sinais correspondentes por meio de imagens e vídeos." data-categoria="Libras: Dicionários e Glossários"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito"
+      data-plataforma="Site"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/colibras-icon.jpg" alt="Colibras" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/colibras/" class="stretched-link text-decoration-none text-dark">
+                  Colibras
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Libras: Dicionários e Glossários</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Site gratuito para pesquisar palavras e visualizar sinais de Libras.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Transcrição da fala para texto"
+      data-descricao="Aplicativo que transcreve fala para texto em tempo real, exibindo legendas ao vivo em mais de 60 idiomas e dialetos. Indispensável para surdos ou deficientes auditivos, o aplicativo facilita o acompanhamento de falas em tempo real e o armazenamento de notas transcritas." data-categoria="Transcrição de Fala"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental; Ensino Médio"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo"
+      data-requer_internet="Parcialmente">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/transcricao-da-fala-para-texto-icon.jpg" alt="Transcrição da fala para texto" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/transcricao-da-fala-para-texto/" class="stretched-link text-decoration-none text-dark">
+                  Transcrição da fala pa...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Transcrição de Fala</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Transcrição de fala em texto com modo offline.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Parcialmente
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Comunicação para surdos"
+      data-descricao="O aplicativo &quot;Comunicação para surdos&quot; é projetado para facilitar a comunicação entre surdos ou deficientes auditivos e outras pessoas. Ele converte fala em texto com um único botão, permitindo que palavras faladas sejam transcritas em tempo real. É usado em ambientes de saúde, como hospitais, além de suportar vários idiomas, e é ideal para situações onde a comunicação clara é essencial." data-categoria="Comunicação Assistiva"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental; Ensino Médio"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/comunicacao-para-surdos-icon.jpg" alt="Comunicação para surdos" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/comunicacao-para-surdos/" class="stretched-link text-decoration-none text-dark">
+                  Comunicação para surdo...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Comunicação Assistiva</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Aplicativo projetado para facilitar a comunicação de pessoas surdas.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Captify: Legendas ao Vivo"
+      data-descricao="O Captify é um aplicativo que utiliza o microfone do telefone e inteligência artificial avançada para transformar o discurso em texto em tempo real, criando legendas ao vivo. A tecnologia é projetada para auxiliar pessoas surdas ou com deficiência auditiva, proporcionando uma experiência de comunicação mais inclusiva em diversas situações. O aplicativo é 100% gratuito, suporta 100 idiomas e funciona offline, garantindo acessibilidade em qualquer lugar. Além disso, o Captify prioriza a privacidade dos usuários." data-categoria="Transcrição de Fala"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo"
+      data-requer_internet="Não">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/captify-icon.jpg" alt="Captify: Legendas ao Vivo" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/captify/" class="stretched-link text-decoration-none text-dark">
+                  Captify: Legendas ao V...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Transcrição de Fala</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>App gratuito para transformar voz em texto que funciona offline.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Não
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Microsoft Teams"
+      data-descricao="O Microsoft Teams é uma plataforma de colaboração que integra chat, reuniões, chamadas e compartilhamento de arquivos. Para pessoas surdas ou com deficiência auditiva, oferece legendas em tempo real e transcrição automática, facilitando a participação em reuniões e atividades escolares. A versão gratuita permite reuniões de até 60 minutos com até 100 participantes e oferece 5 GB de armazenamento para arquivos compartilhados." data-categoria="Videoconferência"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito com Limitações"
+      data-plataforma="Aplicativo; Aplicativo; Windows"
+      data-requer_internet="Parcialmente">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/microsoft-teams-icon.jpg" alt="Microsoft Teams" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/microsoft-teams/" class="stretched-link text-decoration-none text-dark">
+                  Microsoft Teams
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Videoconferência</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Plataforma de colaboração com legendas em tempo real e transcrição automática.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito com Limitações
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Parcialmente
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Google Meet"
+      data-descricao="O Google Meet é uma plataforma de videoconferência que oferece legendas automáticas em tempo real, facilitando a participação de pessoas surdas ou com deficiência auditiva em reuniões e aulas. A versão gratuita permite reuniões de até 60 minutos com até 100 participantes, sendo ideal para uso em ambientes educacionais e profissionais." data-categoria="Videoconferência"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito com Limitações"
+      data-plataforma="Aplicativo; Site"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/google-meet-icon.jpg" alt="Google Meet" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/google-meet/" class="stretched-link text-decoration-none text-dark">
+                  Google Meet
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Videoconferência</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Plataforma de videoconferência com legendas automáticas em tempo real.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito com Limitações
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Zoom"
+      data-descricao="O Zoom é uma plataforma de videoconferência amplamente utilizada, que oferece recursos como chat, telefone e quadro branco. Possui legendas automáticas em tempo real, o que facilita a inclusão de pessoas surdas ou com deficiência auditiva em reuniões e aulas. A versão gratuita permite reuniões de até 40 minutos com até 100 participantes, sendo útil para pequenas reuniões e atividades educacionais." data-categoria="Videoconferência"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito com Limitações"
+      data-plataforma="Aplicativo; Aplicativo; Site; Windows"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/zoom-icon.jpg" alt="Zoom" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/zoom/" class="stretched-link text-decoration-none text-dark">
+                  Zoom
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Videoconferência</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Plataforma de videoconferência com legendas automáticas em tempo real.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito com Limitações
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Skype"
+      data-descricao="Skype é um serviço de comunicação que permite chamadas de vídeo e voz, mensagens instantâneas e compartilhamento de arquivos. Ele oferece legendas ao vivo e tradução de chamadas, facilitando a inclusão de surdos e pessoas com deficiência auditiva. A versão gratuita permite reuniões com até 100 participantes sem limite de tempo." data-categoria="Videoconferência"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito com Limitações"
+      data-plataforma="Aplicativo; Aplicativo; Site; Windows"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/skype-icon.jpg" alt="Skype" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/skype/" class="stretched-link text-decoration-none text-dark">
+                  Skype
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Videoconferência</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Serviço de comunicação com legendas ao vivo e tradução de chamadas.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito com Limitações
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="LetMeTalk:Aplicação Grátis CAA"
+      data-descricao="LetMeTalk é uma aplicação gratuita de Comunicação Alternativa e Aumentativa (CAA), projetada para apoiar a comunicação de pessoas com dificuldades de fala, incluindo surdos. O aplicativo permite alinhar imagens para formar frases significativas, utilizando uma base de dados com mais de 9000 imagens do ARASAAC. O LetMeTalk é totalmente funcional offline, o que o torna adequado para uso em diversos ambientes, como escolas e centros de saúde." data-categoria="Comunicação Assistiva"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo"
+      data-requer_internet="Não">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/letmetalk-icon.jpg" alt="LetMeTalk:Aplicação Grátis CAA" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/letmetalk/" class="stretched-link text-decoration-none text-dark">
+                  LetMeTalk:Aplicação Gr...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Comunicação Assistiva</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Apoia a comunicação de pessoas surdas e funciona offline.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Não
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Matraquinha"
+      data-descricao="O Matraquinha é um aplicativo de comunicação alternativa, voltado principalmente para autistas, mas também útil para pessoas surdas. Ele permite que os usuários transmitam desejos, emoções e necessidades por meio de cartões que, ao serem clicados, reproduzem uma voz que expressa a mensagem. O aplicativo conta com mais de 250 cartões distribuídos em 9 seções e está disponível em múltiplos idiomas, incluindo Português do Brasil. Funciona tanto online quanto offline." data-categoria="Comunicação Assistiva"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental; Ensino Médio"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo; Aplicativo"
+      data-requer_internet="Não">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/matraquinha-icon.jpg" alt="Matraquinha" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/matraquinha/" class="stretched-link text-decoration-none text-dark">
+                  Matraquinha
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Comunicação Assistiva</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Aplicativo de comunicação alternativa que funciona offline.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Não
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="HelpTalk"
+      data-descricao="O HelpTalk é um aplicativo desenvolvido para auxiliar pessoas incapazes de se comunicar de forma tradicional (oral ou escrita) em situações cotidianas, emergenciais ou em interações com profissionais de saúde e familiares. Ele permite a criação de perfis personalizados com ações pré-definidas que, ao serem selecionadas, são pronunciadas pelo dispositivo. O aplicativo também oferece suporte para múltiplos idiomas e inclui funcionalidades de emergência, como o envio de SMS com coordenadas." data-categoria="Comunicação Assistiva"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito"
+      data-plataforma="Aplicativo"
+      data-requer_internet="Não">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/helptalk-icon.jpg" alt="HelpTalk" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/helptalk/" class="stretched-link text-decoration-none text-dark">
+                  HelpTalk
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Comunicação Assistiva</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>App para comunicação oral ou escrita, inclusive em situações emergenciais.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Não
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="AsTeRICS Grid"
+      data-descricao="O AsTeRICS Grid é uma ferramenta gratuita e de código aberto para Comunicação Aumentativa e Alternativa (CAA), que pode ser utilizada tanto online quanto offline. Ele permite a criação de tabelas de comunicação personalizáveis e oferece suporte para diferentes tipos de entrada, como toques, rastreamento ocular e até sensores musculares. A aplicação pode ser usada em dispositivos diversos, como PCs, tablets e smartphones, e é compatível com sistemas operacionais Windows, Linux, Android e iOS. Além de comunicação, o AsTeRICS Grid oferece controle de casa inteligente, reprodução de rádios online e vídeos do YouTube." data-categoria="Comunicação Assistiva"
+      data-etapa="Educação Infantil; Ensino Fundamental; Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito"
+      data-plataforma="Site"
+      data-requer_internet="Não">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/asterics-grid-icon.jpg" alt="AsTeRICS Grid" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/asterics-grid/" class="stretched-link text-decoration-none text-dark">
+                  AsTeRICS Grid
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Comunicação Assistiva</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Permite a comunicação aumentativa em dispositivos diversos.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Não
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="LibrasQuim - Dicionário de Libras para Química"
+      data-descricao="O &quot;LibrasQuim - Dicionário de Libras para Química&quot; é uma ferramenta de acessibilidade linguística desenvolvida para apoiar alunos surdos, professores e intérpretes de Libras no ensino de química. Através de uma lista de termos comuns da química, o site oferece vídeos que mostram os sinais correspondentes aos termos, facilitando a compreensão e a comunicação dos conceitos químicos em sala de aula." data-categoria="Libras: Dicionários e Glossários"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Gratuito"
+      data-plataforma="Site"
+      data-requer_internet="Sim">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/librasquim-icon.jpg" alt="LibrasQuim - Dicionário de Libras para Química" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/librasquim/" class="stretched-link text-decoration-none text-dark">
+                  LibrasQuim - Dicionári...
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Libras: Dicionários e Glossários</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Traz sinais em Libras para termos comuns da Química.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Gratuito
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Sim
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="col-12 col-sm-6 col-md-4 technology-item" data-titulo="Transkriptor"
+      data-descricao="Assistente de IA que converte áudio em texto com alta precisão, suportando transcrição de reuniões, entrevistas, palestras e vídeos. Permite tradução para mais de 100 idiomas e integração com ferramentas como Zoom, Microsoft Teams e Google Meet." data-categoria="Comunicação Assistiva"
+      data-etapa="Ensino Fundamental; Ensino Médio; EJA; Ensino Superior"
+      data-custo="Pago"
+      data-plataforma="Site; Aplicativo; Aplicativo"
+      data-requer_internet="Parcialmente">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/transkriptor-icon.jpg" alt="Transkriptor" width="50" height="50"
+            class="rounded shadow-sm flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/transkriptor/" class="stretched-link text-decoration-none text-dark">
+                  Transkriptor
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">Comunicação Assistiva</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>Site e aplicativo para transcrição de áudio em texto, com ferramentas de IA.</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  
+                  Pago
+                  
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  Parcialmente
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+  </div>
+  <!-- No Results Message -->
+  <div id="no-results" class="container container-md pt-3 my-3" style="display: none;">
+    <div class="card card-body bg-light border-0">
+      <p class="m-0">
+        <i class="bi bi-exclamation-triangle"></i>
+        Nenhum item encontrado.
+      </p>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container container-md">
+  <hr class="my-5 border-top border-1 border-secondary-subtle" />
+  <!-- Recursos section -->
+  <div class="row g-4">
+    <div class="col-12">
+      <div class="card border-0 card-body p-4 bg-gradiente bg-opacity-25 position-relative">
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-8">
+            <h3 class="h4 fw-bold">Recursos Pedagógicos</h3>
+            <p class="text-dark">Confira uma seleção de sites, vídeos e aplicativos contendo formação e informação que
+              auxiliam e orientam
+              sobre a educação para surdos. Acesse!</p>
+          </div>
+          <div class="col-12 col-sm-6 offset-md-1 col-md-3">
+            <a href="recursos/" class="btn btn-shadow btn-white w-100 mt-4 stretched-link ">Ver recursos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="card card-body p-4 bg-light border-0 position-relative">
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-8">
+            <h3 class="h4 fw-bold">Indique uma Tecnologia!</h3>
+            <p class="text-dark">Conhece alguma tecnologia assistiva que promova acessibilidade linguística para surdos
+              que não está listada
+              aqui? Compartilhe conosco e nos ajude a manter este catálogo completo e atualizado!</p>
+          </div>
+          <div class="col-12 col-sm-6 offset-md-1 col-md-3">
+            <a href="recursos/" class="btn btn-shadow btn-secondary w-100 mt-4 stretched-link ">Indique</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () { // Inicialize o List.js
+    const options = {
+      valueNames: [
+        {
+          data: ['titulo']
+        },
+        {
+          data: ['descricao']
+        },
+        {
+          data: ['categoria']
+        },
+        {
+          data: ['etapa']
+        }, {
+          data: ['custo']
+        }, {
+          data: ['plataforma']
+        }, {
+          data: ['requer_internet']
+        }
+      ],
+      listClass: 'list'
+    };
+    const techList = new List('tech-list', options);
+    // Elementos de filtro
+    const searchInput = document.getElementById('search-input');
+    const clearFiltersButton = document.getElementById('clear-filters');
+    const noResults = document.getElementById('no-results');
+    const dropdowns = document.querySelectorAll('.dropdown-menu a');
+    const dropdownButtons = document.querySelectorAll('.dropdown-toggle');
+    // Função de filtro por texto
+    searchInput.addEventListener('input', function () {
+      const searchValue = this.value.trim();
+      if (searchValue.length >= 2) {
+        techList.search(searchValue);
+      } else {
+        techList.search('');
+      } toggleNoResults();
+      toggleClearButton();
+    });
+    // Função para aplicar filtros de dropdown
+    dropdowns.forEach(dropdown => {
+      dropdown.addEventListener('click', function (e) {
+        e.preventDefault();
+        const dropdownButton = e
+          .target
+          .closest('.dropdown')
+          .querySelector('.dropdown-toggle');
+        const filterType = dropdownButton.id.replace('-filter', '');
+        const filterValue = e
+          .target
+          .dataset
+          .value;
+        // Atualiza o texto do botão dropdown
+        dropdownButton.textContent = e.target.textContent;
+        dropdownButton.classList.add('btn-secondary');
+        dropdownButton.classList.remove('btn-outline-secondary');
+        // Aplica o filtro ao List.js
+        techList.filter(item => {
+          if (filterType === 'etapa' || filterType === 'plataformas') { // Filtra por substring para o campo 'etapa'
+            return item.values()[filterType].includes(filterValue);
+          } else {
+            return item.values()[filterType] === filterValue;
+          }
+        });
+        toggleNoResults();
+        toggleClearButton();
+      });
+    });
+    // Função para limpar filtros
+    clearFiltersButton.addEventListener('click', function () {
+      searchInput.value = '';
+      techList.search('');
+      techList.filter();
+      noResults.style.display = 'none';
+      clearFiltersButton.style.display = 'none';
+      // Reinicia o texto e o estilo dos botões dropdown
+      dropdownButtons.forEach(button => {
+        button.textContent = button.getAttribute('data-label'); // Retorna ao label original
+        button.classList.add('btn-outline-secondary');
+        button.classList.remove('btn-secondary');
+      });
+    });
+    // Exibe/esconde o botão de limpar filtros
+    function toggleClearButton() {
+      const hasFilters = searchInput.value.length >= 2 || Array.from(dropdowns).some(dropdown => dropdown.closest('.dropdown').querySelector('.btn-secondary'));
+      clearFiltersButton.style.display = hasFilters
+        ? 'block'
+        : 'none';
+    }
+    // Exibe/esconde a mensagem de "Nenhum item encontrado"
+    function toggleNoResults() {
+      noResults.style.display = techList.matchingItems.length === 0
+        ? 'block'
+        : 'none';
+    }
+  });
+</script>
+
+  </main>
+
+  <!-- btn voltar ao topo -->
+  <div class="text-center pt-4 my-5">
+    <a href="#topo" class="btn btn-sm btn-link-default text-start text-decoration-none">
+      <i class="bi bi-arrow-up"></i>
+      voltar ao topo</a>
+  </div>
+  <!-- footer -->
+  <footer class="container">
+    <div class="row">
+      <div class="col-12">
+        <hr class="mb-5 border-top border-1 border-secondary-subtle">
+      </div>
+      <div class="col-md-6 mb-3">
+        <h5 class="h5 fw-bold">Tecnologias Assistivas</h5>
+        <p class="text-body-secondary">Promovendo a inclusão através da tecnologia e educação.</p>
+      </div>
+      <div class="col-md-3 mb-3">
+        <h5>Navegação</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="index.html" class="text-decoration-none">Início</a>
+          </li>
+          <li>
+            <a href="index.html" class="text-decoration-none">Tecnologias</a>
+          </li>
+          <li>
+            <a href="recursos/" class="text-decoration-none">Recursos</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-3 mb-3">
+        <h5>O projeto</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="sobre/" class="text-decoration-none">Sobre</a>
+          </li>
+          <li>
+            <a href="tecnologias-assistivas/" class="text-decoration-none">Tecnologias Assistivas</a>
+          </li>
+          <li>
+            <a href="contato/" class="text-decoration-none">Contato</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-12">
+        <hr class="border-top border-1 border-secondary-subtle">
+      </div>
+      <div class="col-md-10">
+        <p class="text-secondary text-start fst-italic">
+          <small>Este produto educacional (catálogo de tecnologias assistivas) é fruto de pesquisa de Mestrado
+            Profissional em
+            Computação Aplicada.</small>
+        </p>
+      </div>
+      <div class="col-md-2">
+        <p class="text-secondary text-end fst-italic">
+          <small>Brasil, 2024</small>
+        </p>
+      </div>
+    </div>
+  </footer>
+<!-- vlibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+  <!-- Scripts Section -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/script.js"></script>
+ 
+  <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6738f914fb20e60013270c2e&product=inline-share-buttons&source=platform" async="async"></script>
+  
+</body>
+
+</html>

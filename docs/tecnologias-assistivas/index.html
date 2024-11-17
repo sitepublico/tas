@@ -1,0 +1,373 @@
+<!-- templates/template.njk -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <!-- Meta tags for character encoding and responsiveness -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/tas/">
+
+  <title>
+    
+    O que é Tecnologia Assistiva?
+    
+    - Tecnologias Assistivas para Surdos
+  </title>
+
+  <!-- Bootstrap CSS for styling -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+  <!-- <link rel="stylesheet" href="assets/css/styles.css"> -->
+  <style>
+    :root {
+      --default: #00bcf2;
+      --default-dark: #016b88;
+      --border-color: #E7EAF0;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    body * {
+      border-color: var(--border-color);
+    }
+
+    a {
+      color: var(--default);
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+      color: var(--default-dark);
+    }
+
+    .text-gradient {
+      background: linear-gradient(to right, #00bcf2, #00b294);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+    }
+
+    .btn-outline-gradient {
+      border: none;
+      outline: none;
+      position: relative;
+      z-index: 1;
+      border-radius: 5px;
+      background: linear-gradient(to right, #00bcf2, #00b294);
+      cursor: pointer;
+    }
+
+    .btn-outline-gradient::before {
+      content: "";
+      position: absolute;
+      left: 1px;
+      right: 1px;
+      top: 1px;
+      bottom: 1px;
+      border-radius: 4px;
+      background-color: white;
+      z-index: -1;
+      transition: 200ms;
+    }
+
+    .btn-outline-gradient::after {
+      content: attr(data);
+      font-size: 16px;
+      background: linear-gradient(to left, #00bcf2, #00b294);
+      -webkit-background-clip: text;
+      color: transparent;
+      transition: 200ms;
+    }
+
+    .btn-outline-gradient:hover::before {
+      opacity: 50%;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+    }
+
+    .btn-outline-gradient:hover::after {
+      color: #fff;
+    }
+
+    .btn-white {
+      color: #00b294;
+      background-color: #fff;
+    }
+
+    .btn-white:hover,
+    .btn-white:focus,
+    .btn-white:active {
+      background-color: #00bcf2;
+      color: #fff;
+    }
+
+    .has-search .form-control {
+      padding-left: 2.375rem;
+      box-shadow: 0px 1px 2px rgba(50, 50, 71, .08);
+      border-radius: 0.8rem;
+    }
+
+    .has-search .form-control-icon {
+      position: absolute;
+      z-index: 2;
+      display: block;
+      width: 2.5rem;
+      height: 2.5rem;
+      line-height: 3.7rem;
+      text-align: center;
+      pointer-events: none;
+      color: #aaa;
+    }
+
+    .has-search input:focus {
+      border-color: var(--default);
+    }
+
+    .container-md {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .card-hover:hover,
+    .card-hover:focus,
+    .card-hover:active {
+      border-color: rgba(0, 190, 242, 0.5);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .form-control-lg {
+      min-height: calc(1.3em + 2rem + 2px);
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      border-radius: .5rem;
+    }
+
+    .dropdown button,
+    .btn-shadow {
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075)
+    }
+
+    .btn-outline-secondary,
+    .card,
+    input,
+    hr {
+      border-color: var(--border-color);
+    }
+
+    .text-default {
+      color: var(--default);
+    }
+
+    /* Botão padrão */
+    .btn-default {
+      background-color: var(--default);
+      border: none;
+      color: white;
+    }
+
+    .btn-default:hover,
+    .btn-default:focus,
+    .btn-default:active,
+    .btn-outline-default:hover,
+    .btn-outline-default:focus,
+    .btn-outline-default:active,
+    .btn-link-default:hover,
+    .btn-link-default:focus,
+    .btn-link-default:active {
+      background-color: var(--default-dark);
+      color: white;
+    }
+
+    /* Botão Outline */
+    .btn-outline-default {
+      background-color: transparent;
+      border: 2px solid var(--default);
+      color: var(--default);
+    }
+
+    /* Botão Link */
+    .btn-link-default {
+      color: var(--default);
+    }
+
+    /* Fundo gradiente roxo */
+    .bg-gradiente {
+      background: linear-gradient(135deg, #00bef225 60%, #00b29425 100%);
+    }
+
+    /* Definir borda padrão */
+
+    .card,
+    .card-body {
+      border-radius: .9rem
+    }
+  </style>
+
+  <!-- Additional head content can be added by child templates -->
+  
+</head>
+
+<body class="background-image">
+  <!-- Top Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-25" id="topo">
+    <div class="container">
+      <!-- Brand/logo -->
+      <a class="navbar-brand" href="index.html">
+        <img src="assets/images/logo.png" alt="Tecnologias Assistivas para Surdos">
+      </a>
+      <!-- Toggler/collapsible button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <!-- Navigation links -->
+          <li class="nav-item">
+            <a class="nav-link me-3" href="index.html">Tecnologias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link me-3 mb-2" href="recursos/">Recursos Pedagógicos</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-gradient" href="contato/" data="Indique uma Tecnologia"
+              title="Indique uma Tecnologia"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="my-5">
+    <!-- Content block to be overridden by child templates -->
+    
+    <div class="container container-md">
+        <div class="row g-4 my-2">
+            <div class="col-12 my-5">
+                <h1 class="display-3 fw-bold">O que é Tecnologia Assistiva?</h1>
+                <hr class="my-4" />  
+                <p class="lead text-body-secondary">
+                    <p>As tecnologias assistivas são ferramentas essenciais para promover a inclusão e acessibilidade de pessoas com deficiência. Elas abrangem uma ampla gama de dispositivos, recursos e serviços, ajudando a melhorar a autonomia e a participação social dessas pessoas. No campo da educação, essas tecnologias desempenham um papel fundamental, especialmente na educação de estudantes surdos, onde facilitam a comunicação e o aprendizado.</p>
+<h3>O que são Tecnologias Assistivas?</h3>
+<p>De acordo com Ferreira e Ranieri (2016), as <em>&quot;Tecnologias Assistivas (TA) objetivam funcionalidade, independência, autonomia e qualidade de vida das pessoas com deficiência, por meio de recursos, estratégias, serviços e equipamentos&quot;</em>. Esses recursos podem incluir desde adaptações físicas, como cadeiras de rodas e próteses, até sistemas digitais avançados, como tradutores automáticos de Língua de Sinais ou softwares que facilitam a comunicação. No contexto educacional, as tecnologias assistivas ajudam a adaptar currículos e metodologias de ensino para que todos os estudantes possam ter uma experiência educacional inclusiva e plena (Ferreira &amp; Ranieri, 2016).</p>
+<h3>Tecnologias Assistivas na Educação de Surdos</h3>
+<p>No Brasil, a educação de surdos enfrenta desafios consideráveis, e as tecnologias assistivas têm um papel essencial para garantir que esses estudantes tenham acesso igualitário ao conhecimento. Ferramentas como vídeos em Libras (Língua Brasileira de Sinais), legendas automáticas e aplicativos educacionais adaptados são algumas das soluções tecnológicas que permitem a inclusão desses estudantes nas salas de aula. No modelo educacional bilíngue, que considera a Libras como a primeira língua e o português como segunda, as tecnologias assistivas são fundamentais para adaptar o conteúdo e permitir que os estudantes surdos interajam com o material de ensino de forma eficiente.</p>
+<p>Um estudo conduzido por Nogueira e Cabello (2017) analisou o uso de tecnologias digitais no ensino de estudantes surdos. Eles observaram como os professores utilizam materiais digitais em Libras para facilitar o aprendizado da língua portuguesa escrita, permitindo que as crianças surdas tenham uma experiência educativa mais acessível e produtiva (Nogueira &amp; Cabello, 2017).</p>
+<p>Além disso, outros recursos, como jogos pedagógicos e atividades adaptadas, foram usados com sucesso no ensino de geografia, demonstrando que essas tecnologias podem não apenas auxiliar no aprendizado, mas também aumentar a motivação e o engajamento dos estudantes surdos (Sousa &amp; Oliveira, 2019).</p>
+<h3>Dificuldades e Desafios no Contexto Brasileiro</h3>
+<p>Apesar dos avanços, a implementação de tecnologias assistivas na educação ainda enfrenta muitas barreiras no Brasil. Estudantes com deficiência, incluindo os surdos, muitas vezes enfrentam exclusão devido à falta de recursos adequados e à resistência cultural. Santos e Pessoa (2019) mostram que, no ensino superior, muitos estudantes com deficiência lidam com barreiras físicas e sociais, como a falta de adaptação dos ambientes e o preconceito de colegas e professores. Essas dificuldades impactam diretamente a inclusão e a permanência desses estudantes no ambiente educacional (Santos &amp; Pessoa, 2019).</p>
+<p>Além disso, embora as políticas públicas já reconheçam a Libras como língua oficial para a comunidade surda, a capacitação dos professores e a produção de materiais pedagógicos adaptados ainda são insuficientes. Isso ressalta a necessidade urgente de maior investimento em treinamento de educadores e na produção de recursos didáticos acessíveis.</p>
+<h3>Utilize este site!</h3>
+<p>Este site traz diversas opções de tecnologias assistivas que podem ser usadas na promoção de acessibilidade linguística para estudantes surdos. Explore o conteúdo, leia as orientações, discuta com sua comunidade escolar e tente aplicar as soluções no seu contexto. Não desista de promover uma educação mais inclusiva. Cada passo conta para um ambiente educacional mais justo e equitativo para todos.</p>
+<hr>
+<h3>Referências</h3>
+<ul>
+<li>FERREIRA, N.; RANIERI, L. P. O uso da tecnologia assistiva por professores de educação física. Revista Eletrônica de Educação, v. 10, p. 215-229, 2016. Disponível em: <a href="https://www.reveduc.ufscar.br/index.php/reveduc/article/view/1593">https://www.reveduc.ufscar.br/index.php/reveduc/article/view/1593</a>.</li>
+<li>NOGUEIRA, A.; CABELLO, J. Considerações sobre educação de surdos e tecnologias a partir da análise das estratégias de ensino de um professor surdo. Texto Livre: Linguagem e Tecnologia, v. 10, p. 242-256, 2017. Disponível em: <a href="https://periodicos.ufmg.br/index.php/textolivre/article/view/16756">https://periodicos.ufmg.br/index.php/textolivre/article/view/16756</a>.</li>
+<li>SOUSA, A. C. D. O.; OLIVEIRA, A. M. de. O ensino de Geografia na educação de surdos: estudo de caso no Instituto Cearense de Educação de Surdos - ICES. Revista Brasileira de Educação em Geografia, v. 9, 2019. Disponível em: <a href="https://www.revistaedugeo.com.br/revistaedugeo/article/view/506">https://www.revistaedugeo.com.br/revistaedugeo/article/view/506</a>.</li>
+<li>SANTOS, I. S.; PESSOA, A. S. G. Fatores que dificultam a permanência de estudantes com deficiência no ensino superior. Revista de Ensino, Educação e Ciências Humanas, v. 20, p. 430-439, 2019. Disponível em: <a href="https://www.researchgate.net/publication/339225255_Fatores_que_Dificultam_a_Permanencia_de_Estudantes_com_...">https://www.researchgate.net/publication/339225255_Fatores_que_Dificultam_a_Permanencia_de_Estudantes_com_Deficiencia_no_Ensino_Superior</a>.</li>
+</ul>
+
+                </p>
+            </div>
+        </div>
+    </div>
+
+  </main>
+
+  <!-- btn voltar ao topo -->
+  <div class="text-center pt-4 my-5">
+    <a href="#topo" class="btn btn-sm btn-link-default text-start text-decoration-none">
+      <i class="bi bi-arrow-up"></i>
+      voltar ao topo</a>
+  </div>
+  <!-- footer -->
+  <footer class="container">
+    <div class="row">
+      <div class="col-12">
+        <hr class="mb-5 border-top border-1 border-secondary-subtle">
+      </div>
+      <div class="col-md-6 mb-3">
+        <h5 class="h5 fw-bold">Tecnologias Assistivas</h5>
+        <p class="text-body-secondary">Promovendo a inclusão através da tecnologia e educação.</p>
+      </div>
+      <div class="col-md-3 mb-3">
+        <h5>Navegação</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="index.html" class="text-decoration-none">Início</a>
+          </li>
+          <li>
+            <a href="index.html" class="text-decoration-none">Tecnologias</a>
+          </li>
+          <li>
+            <a href="recursos/" class="text-decoration-none">Recursos</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-3 mb-3">
+        <h5>O projeto</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="sobre/" class="text-decoration-none">Sobre</a>
+          </li>
+          <li>
+            <a href="tecnologias-assistivas/" class="text-decoration-none">Tecnologias Assistivas</a>
+          </li>
+          <li>
+            <a href="contato/" class="text-decoration-none">Contato</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-12">
+        <hr class="border-top border-1 border-secondary-subtle">
+      </div>
+      <div class="col-md-10">
+        <p class="text-secondary text-start fst-italic">
+          <small>Este produto educacional (catálogo de tecnologias assistivas) é fruto de pesquisa de Mestrado
+            Profissional em
+            Computação Aplicada.</small>
+        </p>
+      </div>
+      <div class="col-md-2">
+        <p class="text-secondary text-end fst-italic">
+          <small>Brasil, 2024</small>
+        </p>
+      </div>
+    </div>
+  </footer>
+<!-- vlibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+  <!-- Scripts Section -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/script.js"></script>
+ 
+  <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6738f914fb20e60013270c2e&product=inline-share-buttons&source=platform" async="async"></script>
+  
+</body>
+
+</html>
