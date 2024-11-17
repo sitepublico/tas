@@ -1,0 +1,1788 @@
+<!-- templates/template.njk -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <!-- Meta tags for character encoding and responsiveness -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/">
+  <title>
+    
+    Recursos
+    
+    - Catálogo de Tecnologias Assistivas
+  </title>
+
+  <!-- Bootstrap CSS for styling -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+  <!-- <link rel="stylesheet" href="/assets/css/styles.css"> -->
+  <style>
+    :root {
+      --default: #00bcf2;
+      --default-dark: #016b88;
+      --border-color: #E7EAF0;
+      /* #D4E0EA*/
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    body * {
+      border-color: var(--border-color);
+    }
+
+    a {
+      color: var(--default);
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+      color: var(--default-dark);
+    }
+
+    .text-gradient {
+      background: linear-gradient(to right, #00bcf2, #00b294);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+    }
+
+    .btn-outline-gradient {
+      border: none;
+      outline: none;
+      position: relative;
+      z-index: 1;
+      border-radius: 5px;
+      background: linear-gradient(to right, #00bcf2, #00b294);
+      cursor: pointer;
+    }
+
+    .btn-outline-gradient::before {
+      content: "";
+      position: absolute;
+      left: 1px;
+      right: 1px;
+      top: 1px;
+      bottom: 1px;
+      border-radius: 4px;
+      background-color: white;
+      z-index: -1;
+      transition: 200ms;
+    }
+
+    .btn-outline-gradient::after {
+      content: attr(data);
+      font-size: 16px;
+      background: linear-gradient(to left, #00bcf2, #00b294);
+      -webkit-background-clip: text;
+      color: transparent;
+      transition: 200ms;
+    }
+
+    .btn-outline-gradient:hover::before {
+      opacity: 50%;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+    }
+
+    .btn-outline-gradient:hover::after {
+      color: #fff;
+    }
+
+    .btn-white {
+      color: #00b294;
+      background-color: #fff;
+    }
+
+    .btn-white:hover,
+    .btn-white:focus,
+    .btn-white:active {
+      background-color: #00bcf2;
+      color: #fff;
+    }
+
+    .has-search .form-control {
+      padding-left: 2.375rem;
+      box-shadow: 0px 1px 2px rgba(50, 50, 71, .08);
+      border-radius: 0.8rem;
+    }
+
+    .has-search .form-control-icon {
+      position: absolute;
+      z-index: 2;
+      display: block;
+      width: 2.5rem;
+      height: 2.5rem;
+      line-height: 3.7rem;
+      text-align: center;
+      pointer-events: none;
+      color: #aaa;
+    }
+
+    .has-search input:focus {
+      border-color: var(--default);
+    }
+
+    .container-md {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .card-hover:hover,
+    .card-hover:focus,
+    .card-hover:active {
+      border-color: rgba(0, 190, 242, 0.5);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .form-control-lg {
+      min-height: calc(1.3em + 2rem + 2px);
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      border-radius: .5rem;
+    }
+
+    .dropdown button,
+    .btn-shadow {
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075)
+    }
+
+    .btn-outline-secondary,
+    .card,
+    input,
+    hr {
+      border-color: var(--border-color);
+    }
+
+    .text-default {
+      color: var(--default);
+    }
+
+    /* Botão padrão */
+    .btn-default {
+      background-color: var(--default);
+      border: none;
+      color: white;
+    }
+
+    .btn-default:hover,
+    .btn-default:focus,
+    .btn-default:active,
+    .btn-outline-default:hover,
+    .btn-outline-default:focus,
+    .btn-outline-default:active,
+    .btn-link-default:hover,
+    .btn-link-default:focus,
+    .btn-link-default:active {
+      background-color: var(--default-dark);
+      color: white;
+    }
+
+    /* Botão Outline */
+    .btn-outline-default {
+      background-color: transparent;
+      border: 2px solid var(--default);
+      color: var(--default);
+    }
+
+    /* Botão Link */
+    .btn-link-default {
+      color: var(--default);
+    }
+
+    /* Fundo gradiente roxo */
+    .bg-gradiente {
+      background: linear-gradient(135deg, #00bef225 60%, #00b29425 100%);
+    }
+
+    /* Definir borda padrão */
+
+    .card,
+    .card-body {
+      border-radius: .9rem
+    }
+  </style>
+
+  <!-- Additional head content can be added by child templates -->
+  
+</head>
+
+<body class="background-image">
+  <!-- Top Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-25" id="topo">
+    <div class="container">
+      <!-- Brand/logo -->
+      <a class="navbar-brand" href="index.html">
+        <img src="assets/images/logo.png" alt="Tecnologias Assistivas para Surdos">
+      </a>
+      <!-- Toggler/collapsible button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <!-- Navigation links -->
+          <li class="nav-item">
+            <a class="nav-link me-3" href="index.html">Tecnologias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link me-3 mb-2" href="recursos/">Recursos Pedagógicos</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-gradient" href="contato/" data="Indique uma Tecnologia"
+              title="Indique uma Tecnologia"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="my-5">
+    <!-- Content block to be overridden by child templates -->
+    
+<div class="container container-md">
+  <div class="row g-4 mt-5">
+
+
+    <!-- header -->
+    <section class="col-12">
+      <h1 class="display-3 fw-bold text-center">Recursos Pedagógicos</h1>
+      <p class="fs-5 text-secondary text-center">Explore recursos incríveis que vão lhe ajudar a tornar a educação mais
+        acessível para surdos.</p>
+    </section>
+
+    <!-- categorias -->
+    <section class="col-12 my-4 text-center">
+      
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      
+      
+      <input type="radio" class="btn-check" name="resource-category" value="Acessibilidade"
+        id="chk-cat-Acessibilidade" />
+      <label class="btn btn-shadow btn-sm btn-outline-secondary mb-2 opacity-75" for="chk-cat-Acessibilidade">Acessibilidade</label>
+      
+      <input type="radio" class="btn-check" name="resource-category" value="Curso de Libras"
+        id="chk-cat-Curso de Libras" />
+      <label class="btn btn-shadow btn-sm btn-outline-secondary mb-2 opacity-75" for="chk-cat-Curso de Libras">Curso de Libras</label>
+      
+      <input type="radio" class="btn-check" name="resource-category" value="Educação em Libras"
+        id="chk-cat-Educação em Libras" />
+      <label class="btn btn-shadow btn-sm btn-outline-secondary mb-2 opacity-75" for="chk-cat-Educação em Libras">Educação em Libras</label>
+      
+      <input type="radio" class="btn-check" name="resource-category" value="Formação de Professores"
+        id="chk-cat-Formação de Professores" />
+      <label class="btn btn-shadow btn-sm btn-outline-secondary mb-2 opacity-75" for="chk-cat-Formação de Professores">Formação de Professores</label>
+      
+      <input type="radio" class="btn-check" name="resource-category" value="Materiais Pedagógicos"
+        id="chk-cat-Materiais Pedagógicos" />
+      <label class="btn btn-shadow btn-sm btn-outline-secondary mb-2 opacity-75" for="chk-cat-Materiais Pedagógicos">Materiais Pedagógicos</label>
+      
+      <br>
+      <button id="clear-filters" class="btn btn-shadow btn-warning btn-sm" style="display:none">
+        <i class="bi bi-x"></i> Limpar Filtros
+      </button>
+    </section>
+
+  </div>
+</div>
+
+<!-- recursos -->
+<section id="resources-list" class="container mb-5 pt-3">
+  <div class="list row g-4">
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.librasol.com.br/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">LibraSol</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Plataforma de apoio à educação de surdos, com foco em Libras.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.amigodosurdo.com/results?search=%22EDUCA%C3%87%C3%83O%22" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Site &#39;Amigo do Surdo&#39;</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Portal com recursos e artigos voltados para a educação de surdos.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Formação de Professores">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.signaedu.com/index.html" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Cursos para surdos</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Formação de Professores</span>
+          <p class="card-text my-3">Plataforma de cursos para surdos, com foco em inclusão.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.atividadeseducativas.com.br/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">ATIVIDADES EDUCATIVAS</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Repositório de atividades educativas para diversas necessidades.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://educacaoemlibras.blogspot.com/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Educação em Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Blog sobre educação em Libras e materiais pedagógicos.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://diversa.org.br/materiais-pedagogicos/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Diversa</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Materiais pedagógicos inclusivos para diversos públicos.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://github.com/adelibras/gifs/tree/master" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">GIFS DE SINAIS</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Repositório de GIFs com sinais em Libras para facilitar o aprendizado visual.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Formação de Professores">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.portalassistiva.com.br/pranchas/atividades.php?opcao=3&amp;etapa=2&amp;cod_categoria=10" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Portal de Tecnologia Assistiva</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Formação de Professores</span>
+          <p class="card-text my-3">Portal de pranchas e atividades adaptadas para alunos com deficiência.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="http://repositorio.ines.gov.br/ilustra/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Repositório Digital Huet</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Repositório digital com materiais educativos para surdos.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://biblioteca.ines.gov.br/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Biblioteca</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Biblioteca digital com materiais em Libras e recursos acessíveis.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Curso de Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.gov.br/ines/pt-br" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Instituto Nacional de Educação de Surdos</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Curso de Libras</span>
+          <p class="card-text my-3">Instituto com foco em educação para surdos, oferecendo cursos e materiais.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="http://www.librasgerais.com.br/materiais-inclusivos/downloads/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Materiais Inclusivos</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Repositório de materiais inclusivos, com foco em Libras.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="http://www.librasgerais.com.br/principal/index.php" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Libras Gerais</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Portal com materiais didáticos e recursos em Libras.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Formação de Professores">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.gov.br/mec/pt-br/media/publicacoes/semesp/alunossurdos.pdf/view" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Saberes e práticas da inclusão</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Formação de Professores</span>
+          <p class="card-text my-3">Guia prático para professores sobre inclusão de alunos surdos.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://danianepereira.blogspot.com/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Blog Dania Pereira</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Blog com artigos e recursos sobre educação em Libras.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.youtube.com/c/M%C3%A3osAventureiras/videos" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Canal Mãos Aventureiras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Canal no YouTube com vídeos educativos em Libras.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Youtube
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://educ.see.ac.gov.br/busca?q=surdo%20ou%20libras%20libras%20OR%20libras" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Educ</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Plataforma de busca para materiais e recursos educacionais em Libras.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://clubedelibras.ufc.br/pt/recursos/materiais/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Clube de Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Repositório de materiais didáticos em Libras, voltado para o ensino.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://cta.ifrs.edu.br/materiais-de-apoio/glossarios-e-materiais-didaticos-em-libras/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Materiais Didáticos em Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Materiais didáticos em Libras para apoio ao ensino.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.youtube.com/c/aprendercomlibras" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Canal Aprender com Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Canal no YouTube com aulas e recursos em Libras.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Youtube
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="http://www.escoladeformacao.sp.gov.br/portais/Default.aspx?tabid=1899" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Materiais sobre Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Materiais educativos sobre Libras para formação de professores.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://editora-arara-azul.com.br/centro-virtual-de-cultura-surda/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Centro Virtual da Cultura Surda</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Portal sobre a cultura surda, com recursos e materiais educativos.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.youtube.com/c/AcademiadeLibras" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Canal Academia de Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Canal no YouTube com vídeos educativos em Libras para diversos temas.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Youtube
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.youtube.com/channel/UC0ZGOWQz1aVaKGH15sXVhug" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Canal Libras L2</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Canal no YouTube focado no ensino de Libras como segunda língua.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Youtube
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.youtube.com/c/SeLigaNasM%C3%A3os" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Canal Se Liga Nas Mãos</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Canal no YouTube com conteúdos variados sobre Libras e cultura surda.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Youtube
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.youtube.com/c/CarlosCristianLibras" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Canal Carlos Cristian Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Canal no YouTube com vídeos de Libras para iniciantes e avançados.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Youtube
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Formação de Professores">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.youtube.com/user/incluirtecnologia" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Canal Incluir Tecnologia</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Formação de Professores</span>
+          <p class="card-text my-3">Canal no YouTube com foco em tecnologia assistiva e inclusão.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Youtube
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.youtube.com/channel/UChIqq799NHyK9-JNECUISZg" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Canal Viver de Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Canal no YouTube com conteúdos sobre Libras para o dia a dia.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Youtube
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="http://www.cchla.ufpb.br/extlibras/contents/paginas/dicionarios-e-glossarios" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Dicionários e Glossários</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Repositório de dicionários e glossários em Libras para diversas áreas, em PDF.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="http://www.cchla.ufpb.br/extlibras/contents/paginas/videos" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Vídeos: Sinalários/Contos/Poemas</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Vídeos de sinalários, contos e poemas em Libras para apoio didático.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="http://www.cchla.ufpb.br/extlibras/contents/paginas/pdfs" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Materiais Diversos em PDF</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Materiais diversos em PDF voltados para o ensino de Libras.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://acervodigital.sme.prefeitura.sp.gov.br/palavra/lingua-brasileira-de-sinais-libras/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Cadernos de apoio e aprendizagem - Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Cadernos de apoio para aprendizagem de Libras, voltados para professores.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://app-hmg-libras.levantelab.com.br/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Portal de Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Portal online com recursos e materiais educativos em Libras.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://diversa.org.br/materiais-pedagogicos/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Materiais Pedagógicos</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Materiais pedagógicos inclusivos para diversas disciplinas.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.dialogosemeducacaoespecial.com.br/post/materididaticensidelibras" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Materiais Pedagógicos para o Ensino de Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Materiais pedagógicos específicos para o ensino de Libras.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://cegi.unifesp.br/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Jogos Online sobre Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Jogos online interativos para aprendizado de Libras.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://blog.surdoparasurdo.com.br/livros-e-apostilas-gratuitos-em-libras-pdf-496c7f798f03" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Livros e apostilas gratuitos em Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Repositório de livros e apostilas gratuitas em Libras.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://escolaweb.educacao.al.gov.br/busca?q=libras" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">EscolaWeb</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Plataforma de busca para materiais educativos sobre Libras.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://debasi.ines.gov.br/p%C3%A1gina-inicial" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Materiais Pedagógicos Diversos</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Repositório de materiais pedagógicos em Libras para uso em sala de aula.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.ufpi.br/arquivos_download/arquivos/EBOOK_-_MANUAL_DE_LIBRAS_PARA_CIENCIA-_A_C%C3%ABLULA_E_O_CORPO_HUMANO20200727155142.pdf" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Manual de Libras para Ciências: A Célula e o Corpo Humano</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Manual em Libras para o ensino de Ciências com foco na célula e corpo humano.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Curso de Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://edisciplinas.usp.br/course/view.php?id=5603" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Curso de Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Curso de Libras</span>
+          <p class="card-text my-3">Curso online de Libras oferecido pela USP, com conteúdo didático estruturado.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://corpuslibras.ufsc.br/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Corpus de Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Corpus digital da Língua Brasileira de Sinais, desenvolvido pela UFSC.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Curso de Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://ava.ufca.edu.br/course/index.php?categoryid=61" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Formações Letras-Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Curso de Libras</span>
+          <p class="card-text my-3">Formações e cursos na área de Letras-Libras, oferecidos pela UFCA.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.youtube.com/@programalibrasetrilhas" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Canal Libras &amp; Trilhas</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Canal no YouTube com vídeos sobre Libras e educação.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Youtube
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://librasetrilhas.ufam.edu.br/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Libras &amp; Trilhas</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Portal de recursos e materiais educativos para o ensino de Libras.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://casgoiania.com.br/index.php/glossarios/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Glossário de Libras (vídeo)</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Glossário de Libras em formato de vídeo, com foco em termos específicos.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Curso de Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.escolavirtual.gov.br/curso/11" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Curso: Introdução à Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Curso de Libras</span>
+          <p class="card-text my-3">Curso introdutório de Libras oferecido pela Escola Virtual do Governo.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Curso de Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://eskadauema.com/course/view.php?id=58" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Curso de Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Curso de Libras</span>
+          <p class="card-text my-3">Curso de Libras oferecido pela UEMA, com foco em ensino básico.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Curso de Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://ead.sesc.digital/cursos/course-v1:sescsaopaulo+c017+2023_libras/sobre" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Curso de Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Curso de Libras</span>
+          <p class="card-text my-3">Curso de Libras oferecido pelo SESC, com recursos didáticos.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Curso de Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://moodle.ifrs.edu.br/course/index.php?categoryid=81" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Curso de Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Curso de Libras</span>
+          <p class="card-text my-3">Curso de Libras oferecido pelo IFRS, com conteúdo online.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://eaulas.usp.br/portal/course.action?course=6085" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">VideoAulas de Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Plataforma de videoaulas sobre Libras, oferecida pela USP.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Curso de Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://mundi.ifsul.edu.br/portal/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Cursos de Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Curso de Libras</span>
+          <p class="card-text my-3">Cursos de Libras disponíveis no portal do IFSUL.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Formação de Professores">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://mundi.ifsul.edu.br/portal/tecnologia-assistiva.php" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Curso de Tecnologia Assistiva</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Formação de Professores</span>
+          <p class="card-text my-3">Curso sobre tecnologia assistiva, oferecido pelo IFSUL.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Curso de Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://cursoslivres.ifms.edu.br/course/search.php?areaids=core_course-course&amp;q=libras" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Cursos de Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Curso de Libras</span>
+          <p class="card-text my-3">Cursos de Libras oferecidos pelo IFMS, com enfoque acessível.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Curso de Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://learn.microsoft.com/pt-br/training/educator-center/topics/accessibility" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Cursos de Acessibilidade com Softwares Microsoft</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Curso de Libras</span>
+          <p class="card-text my-3">Cursos de acessibilidade utilizando softwares da Microsoft.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Acessibilidade">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://edu.google.com/intl/ALL_br/why-google/accessibility/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Recursos de Acessibilidade do Google</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Acessibilidade</span>
+          <p class="card-text my-3">Recursos de acessibilidade do Google para educação inclusiva.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://literaturaacessivel.com.br/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">LITERATURA ACESSÍVEL</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Portal de literatura acessível, com foco em materiais para surdos.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Acessibilidade">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://play.google.com/store/apps/details?id=com.storysign.storysign" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">StorySign</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Acessibilidade</span>
+          <p class="card-text my-3">App que traduz livros infantis para a Língua de Sinais, facilitando a leitura para crianças surdas.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Android
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Acessibilidade">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://diariopcd.com.br/2024/05/25/especialista-escreve-sobre-dicas-de-aplicativos-para-surdos/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Apps de Acessibilidade Linguística</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Acessibilidade</span>
+          <p class="card-text my-3">Lista de aplicativos de acessibilidade linguística, com foco em comunicação para surdos.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Acessibilidade">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://play.google.com/store/apps/details?id=com.google.android.accessibility.soundamplifier" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Amplificador de Som para Android</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Acessibilidade</span>
+          <p class="card-text my-3">Amplificador de som para Android, destinado a pessoas com baixa audição.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Android
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Materiais Pedagógicos">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://crticloures1.wixsite.com/crticloures/sites-educativos" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Lista de recursos educativos online</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Materiais Pedagógicos</span>
+          <p class="card-text my-3">Lista de recursos educativos online, com foco em materiais acessíveis para educação.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.atendelibras.com.br/game" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">DudaLibras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Jogo educativo que ensina Libras de forma interativa e lúdica.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://play.google.com/store/apps/details?id=com.ludicside.librario&amp;hl=pt_BR" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Librário: Libras para todos</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">App para aprendizado de Libras, com atividades interativas para todos os níveis.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Android
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://app.libraslab.com.br/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">LibrasLab</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Plataforma online para aprendizado de Libras com recursos didáticos.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://www.glossario.libras.ufsc.br/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Glossário de Libras UFSC</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Glossário de Libras desenvolvido pela UFSC, com termos acadêmicos e específicos. Aparentemente não vem sendo atualizado.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://play.google.com/store/apps/details?id=com.gamenimando.Libras" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Libras</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">App que ensina Libras através de jogos e atividades interativas.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Android
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://play.google.com/store/apps/details?id=org.godotengine.libras&amp;hl=pt_BR" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">ForcaBRAS</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">Jogo de forca em Libras, que ajuda no aprendizado do alfabeto e sinais.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Android
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Acessibilidade">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://videomail.io/" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">VideoMail</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Acessibilidade</span>
+          <p class="card-text my-3">Plataforma de videomail que facilita a comunicação em Libras.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://play.google.com/store/apps/details?id=com.AlApps.Signas" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Signas - Aprenda Libras!</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">App para aprender Libras com diversas atividades e exercícios.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Android
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Educação em Libras">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://apps.apple.com/br/app/alfabeto-libras/id1195602484" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Alfabeto LIBRAS</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Educação em Libras</span>
+          <p class="card-text my-3">App que ensina o alfabeto em Libras de forma interativa.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            iOS
+          </span>
+        </div>
+      </article>
+    </div>
+    
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="Acessibilidade">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="https://chromewebstore.google.com/category/extensions/make_chrome_yours/accessibility" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">Extensões de Acessibilidade para Google Chrome</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">Acessibilidade</span>
+          <p class="card-text my-3">Catálogo de extensões para o navegador Google Chrome que aprimoram a acessibilidade à sites e apps online.</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            Site
+          </span>
+        </div>
+      </article>
+    </div>
+    
+  </div>
+</section>
+
+<!-- List.js e Scripts de Filtro -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
+<script>
+  // Template para um item da lista (necessário para List.js caso a lista inicie vazia)
+  var itemTemplate = `<div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="">
+                          <p class="text-center text-muted">Nenhum recurso disponível no momento.</p>
+                        </div>`;
+
+  // Inicialize o List.js com o template para evitar o erro
+  var options = {
+    valueNames: ['categoria'],
+    item: itemTemplate
+  };
+  var resourceList = new List('resources-list', options);
+
+  // Botão de filtro por categoria
+  document.querySelectorAll('.btn-check[name="resource-category"]').forEach(button => {
+    button.addEventListener('change', function () {
+      if (this.checked) {
+        resourceList.filter(item => item.values().categoria === this.value);
+        document.getElementById('clear-filters').style.display = 'inline-block';
+      }
+    });
+  });
+
+  // Limpar filtros
+  document.getElementById('clear-filters').addEventListener('click', function () {
+    resourceList.filter();
+    document.querySelectorAll('.btn-check[name="resource-category"]').forEach(button => button.checked = false);
+    this.style.display = 'none';
+  });
+</script>
+
+  </main>
+
+  <!-- btn voltar ao topo -->
+  <div class="text-center pt-4 my-5">
+    <a href="#topo" class="btn btn-sm btn-link-default text-start text-decoration-none">
+      <i class="bi bi-arrow-up"></i>
+      voltar ao topo</a>
+  </div>
+  <!-- footer -->
+  <footer class="container">
+    <div class="row">
+      <div class="col-12">
+        <hr class="mb-5 border-top border-1 border-secondary-subtle">
+      </div>
+      <div class="col-md-6 mb-3">
+        <h5 class="h5 fw-bold">Tecnologias Assistivas</h5>
+        <p class="text-body-secondary">Promovendo a inclusão através da tecnologia e educação.</p>
+      </div>
+      <div class="col-md-3 mb-3">
+        <h5>Navegação</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="index.html" class="text-decoration-none">Início</a>
+          </li>
+          <li>
+            <a href="tecnologias/" class="text-decoration-none">Tecnologias</a>
+          </li>
+          <li>
+            <a href="recursos/" class="text-decoration-none">Recursos</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-3 mb-3">
+        <h5>O projeto</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="sobre/" class="text-decoration-none">Sobre</a>
+          </li>
+          <li>
+            <a href="tecnologias-assistivas/" class="text-decoration-none">Tecnologias Assistivas</a>
+          </li>
+          <li>
+            <a href="contato/" class="text-decoration-none">Contato</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-12">
+        <hr class="border-top border-1 border-secondary-subtle">
+      </div>
+      <div class="col-md-10">
+        <p class="text-secondary text-start fst-italic">
+          <small>Este produto educacional (catálogo de tecnologias assistivas) é fruto de pesquisa de Mestrado
+            Profissional em
+            Computação Aplicada.</small>
+        </p>
+      </div>
+      <div class="col-md-2">
+        <p class="text-secondary text-end fst-italic">
+          <small>Brasil, 2024</small>
+        </p>
+      </div>
+    </div>
+  </footer>
+  <!-- vlibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+  <!-- Scripts Section -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/js/script.js"></script>
+
+  <script type="text/javascript"
+    src="https://platform-api.sharethis.com/js/sharethis.js#property=6738f914fb20e60013270c2e&product=inline-share-buttons&source=platform"
+    async="async"></script>
+
+</body>
+
+</html>

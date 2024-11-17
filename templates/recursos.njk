@@ -1,0 +1,95 @@
+{% extends "template.njk" %}
+{% block content %}
+<div class="container container-md">
+  <div class="row g-4 mt-5">
+
+
+    <!-- header -->
+    <section class="col-12">
+      <h1 class="display-3 fw-bold text-center">Recursos Pedagógicos</h1>
+      <p class="fs-5 text-secondary text-center">Explore recursos incríveis que vão lhe ajudar a tornar a educação mais
+        acessível para surdos.</p>
+    </section>
+
+    <!-- categorias -->
+    <section class="col-12 my-4 text-center">
+      {% set categorias = [] %}
+      {% for recurso in recursos %}
+        {% if recurso.categoria not in categorias %}
+          {% set _ = categorias.push(recurso.categoria) %}
+        {% endif %}
+      {% endfor %}
+      {% set categorias = categorias | sort %}
+      {% for categoria in categorias %}
+      <input type="radio" class="btn-check" name="resource-category" value="{{ categoria }}"
+        id="chk-cat-{{ categoria }}" />
+      <label class="btn btn-shadow btn-sm btn-outline-secondary mb-2 opacity-75" for="chk-cat-{{ categoria }}">{{
+        categoria }}</label>
+      {% endfor %}
+      <br>
+      <button id="clear-filters" class="btn btn-shadow btn-warning btn-sm" style="display:none">
+        <i class="bi bi-x"></i> Limpar Filtros
+      </button>
+    </section>
+
+  </div>
+</div>
+
+<!-- recursos -->
+<section id="resources-list" class="container mb-5 pt-3">
+  <div class="list row g-4">
+    {% for recurso in recursos %}
+    <div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="{{ recurso.categoria }}">
+      <!-- card -->
+      <article class="card card-hover h-100 position-relative">
+        <div class="card-body bg-light">
+          <h2 class="h5 mb-0">
+            <a href="{{ recurso.link }}" target="_blank" rel="nofollow noopener"
+              class="stretched-link text-decoration-none text-dark">{{ recurso.titulo }}</a>
+          </h2>
+          <span class="categoria text-secondary text-uppercase fw-bold" style="font-size: .7em">{{ recurso.categoria
+            }}</span>
+          <p class="card-text my-3">{{ recurso.descricao }}</p>
+          <span class="badge bg-white border-0 text-secondary rounded-pill">
+            {{ recurso.plataforma }}
+          </span>
+        </div>
+      </article>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- List.js e Scripts de Filtro -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
+<script>
+  // Template para um item da lista (necessário para List.js caso a lista inicie vazia)
+  var itemTemplate = `<div class="resource-item col-12 col-sm-6 col-md-4" data-categoria="">
+                          <p class="text-center text-muted">Nenhum recurso disponível no momento.</p>
+                        </div>`;
+
+  // Inicialize o List.js com o template para evitar o erro
+  var options = {
+    valueNames: ['categoria'],
+    item: itemTemplate
+  };
+  var resourceList = new List('resources-list', options);
+
+  // Botão de filtro por categoria
+  document.querySelectorAll('.btn-check[name="resource-category"]').forEach(button => {
+    button.addEventListener('change', function () {
+      if (this.checked) {
+        resourceList.filter(item => item.values().categoria === this.value);
+        document.getElementById('clear-filters').style.display = 'inline-block';
+      }
+    });
+  });
+
+  // Limpar filtros
+  document.getElementById('clear-filters').addEventListener('click', function () {
+    resourceList.filter();
+    document.querySelectorAll('.btn-check[name="resource-category"]').forEach(button => button.checked = false);
+    this.style.display = 'none';
+  });
+</script>
+{% endblock %}

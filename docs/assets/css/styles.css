@@ -1,0 +1,14 @@
+body {
+    font-family: Inter, Arial, sans-serif
+}
+@media (min-width: 768px) {
+    .custom-container {
+      max-width: 860px;
+    }
+  }
+.card-hover:hover {
+    border-color: #000;
+    -webkit-box-shadow: 0 4px 12px 0 rgba(0, 0, 0, .08);
+    -moz-box-shadow: 0 4px 12px 0 rgba(0, 0, 0, .08);
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, .08);
+}

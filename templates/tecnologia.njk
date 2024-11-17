@@ -1,0 +1,277 @@
+{% extends "template.njk" %}
+{% block content %}
+<style>
+  .tecnologia-detalhe {
+    max-width: 860px;
+    margin: 0 auto
+  }
+
+  .tecnologia-detalhe p {
+    font-size: large;
+    margin-bottom: 0.5em
+  }
+</style>
+
+<div class="container container-md">
+
+  <div class="row g-4">
+
+    <a href="index.html" class="btn btn-sm btn-link text-start text-decoration-none"><i class="bi bi-arrow-left"></i> voltar
+      ao início</a>
+    <div class="col-md-2">
+      <img src="assets/images/tecnologias/{{ slug }}-icon.jpg" width="58" height="58" alt="{{ titulo }}"
+        class="rounded shadow" />
+    </div>
+    <div class="col-md-10">
+      <!-- header -->
+      <h1 class="display-5 fw-bold">{{ titulo }}</h1>
+      <p class="text-secondary text-uppercase fw-bold" style="font-size: .7em">{{ categoria }}</p>
+      <p class="lead">{{ apresentacao }}</p>
+
+      <p class="my-3">
+        <span
+          class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+          <i class="bi bi-currency-dollar"></i>
+          {% if custo == 'Grátis' %}
+          Gratuito
+          {% elseif custo == 'Freemium' %}
+          Gratuito com Limitações
+          {% else %}
+          Pago
+          {% endif %}
+        </span>
+        <span
+          class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+          <i class="bi bi-wifi"></i>
+          {% if requer_internet == 'Sim' %}
+          Requer Internet
+          {% elseif requer_internet == 'Não' %}
+          Não Requer Internet
+          {% else %} Requer Internet Parcialmente {% endif %}
+        </span>
+
+        {% if origem == 'Brasil' %}
+        <span
+          class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+          <img src="assets/images/brasil.png" width="12px">
+          Elaborado no Brasil
+        </span>
+        {% endif %}
+
+      </p>
+      <p>
+      <div class="links-container row g-2"></div>
+      </p>
+    </div>
+    <div class="col-12">
+      <img src="assets/images/tecnologias/{{ imagem }}" alt="{{ titulo }}" class="img-fluid rounded mb-4"
+        class="img-fluid rounded mb-4 w-100" />
+      <hr />
+
+    </div>
+    <div class="col-12">
+      <p class="mb-4">{{ descricao }}</p>
+      <hr class="my-4" />
+      {% if orientacao %}
+      <h2 class="h4 mb-0 fw-bold">Orientação</h2>
+      <p class="mb-4">{{ orientacao }}</p>
+      <hr class="my-4" />
+      {% endif %}
+      {% if dicas %}
+      <h2 class="h4 mb-0 fw-bold">Dicas</h2>
+      <p class="mb-4">{{ dicas }}</p>
+      <hr class="my-4" />
+      {% endif %}
+      {% if etapas_justificativa %}
+      <h2 class="h4 mb-0 fw-bold">Etapas de Ensino</h2>
+      <p class="mb-4">
+        Recomendado para {{ etapas }}.</p>
+      <p class="mb-4">{{ etapas_justificativa }}</p>
+      <hr class="my-4" />
+      {% endif %}
+      <h2 class="h4 mb-3 fw-bold">Resumo da Tecnologia</h2>
+      <div class="card border-0 bg-transparent shadow p-2">
+        <div class="card-body">
+
+          <ul class="list-group list-group-flush rounded">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <h3 class="h5 card-title mb-4 fw-bold">{{ titulo }}</h3>
+              <img src="assets/images/tecnologias/{{ slug }}-icon.jpg" width="50" height="50" alt="{{ titulo }}" />
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Categoria
+              <span class="fw-bold">{{ categoria }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Etapas de ensino
+              <span class="fw-bold">{{ etapas }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Custo
+              <span class="fw-bold">{{ custo }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Requer Internet?
+              <span class="fw-bold">{{ requer_internet }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Autor
+              <span class="fw-bold">
+                {{ autor }}
+                {% if origem == 'Brasil' %}
+                <img src="assets/images/brasil.png" width="12px">
+                {% endif %}
+              </span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Plataforma
+              <span class="fw-bold">{{ plataformas }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div class="links-container row g-2"></div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+      <h2 class="h4 mt-4 mb-0 fw-bold">Compartilhe</h2>
+      <p>
+      <div class="sharethis-inline-share-buttons"></div>
+      </p>
+
+
+      <hr class="my-5" />
+      <ul>
+        <li class="text-secondary">
+          <small>Esta página possui texto gerado por inteligência artificial, e pode conter
+            imprecisões.</small>
+        </li>
+        <li class="text-secondary">
+          <small>Tem alguma correção (ou complemento) sobre este conteúdo? <a class="text-danger"
+              href="contato/">Sugira
+              uma correção!</a></small>
+        </li>
+        <li class="text-secondary">
+          <small>Conhece alguma tecnologia assistiva que não está no site? <a href="contato/">Indique pra
+              gente!</a></small>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+<hr class="my-5" />
+<div class="container">
+  <!-- Tecnologias relacionadas -->
+  <div class="row g-4">
+    <div class="col-12">
+      <h3>Outras tecnologias de <strong>{{ categoria }}</strong></h3>
+    </div>
+    <div class="col-12">
+      <div class="card card-body border-0 bg-light">
+        <p class="text-secondary"><small>{{ categoria_descricao }}</small></p>
+      </div>
+    </div>
+    {% for tec in collections.tecnologias %}
+    {% if tec.data.categoria == categoria and titulo != tec.data.titulo %}
+    <article class="col-12 col-sm-6 col-md-4 technology-item">
+      <div class="card card-hover h-100 position-relative">
+        <div class="card-body d-flex gap-3">
+          <img src="assets/images/tecnologias/{{ tec.data.slug }}-icon.jpg" width="50" height="50"
+            alt="{{ tec.data.titulo }}" class="rounded shadow-sm flex-shrink-0" />
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h2 class="h5 mb-0">
+                <a href="tecnologias/{{ tec.data.slug }}/" class="stretched-link text-decoration-none text-dark">
+                  {{ tec.data.titulo | truncate(22, true, '...') }}
+                </a>
+              </h2>
+              <span class="text-secondary text-uppercase fw-bold" style="font-size: .7em">{{ tec.data.categoria
+                }}</span>
+              <p class="mt-2 mb-3 text-body-secondary lh-1">
+                <small>{{ tec.data.apresentacao }}</small>
+              </p>
+              <p class="m-0">
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-currency-dollar"></i>
+                  {% if tec.data.custo == 'Grátis' %}
+                  Gratuito
+                  {% elseif tec.data.custo == 'Freemium' %}
+                  Gratuito com Limitações
+                  {% else %}
+                  Pago
+                  {% endif %}
+                </span>
+
+                <span
+                  class="badge opacity-75 bg-white-subtle border border-secondary-subtle text-secondary rounded-pill fw-normal">
+                  <i class="bi bi-wifi"></i>
+                  {{ tec.data.requer_internet }}
+                </span>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    {% endif %}
+    {% endfor %}
+
+  </div>
+</div>
+
+<script>
+  // Função para parsear a string de links
+  function parseLinks(linkString) {
+    const links = linkString.split(';');
+    return links.reduce((acc, item) => {
+      const [platform, url] = item.split(',');
+      if (platform && url) {
+        acc[platform.toLowerCase()] = url.trim();
+      }
+      return acc;
+    }, {});
+  }
+
+  // Atribuir o valor do link através do Nunjucks
+  const linkString = "{{ link }}";
+  const links = parseLinks(linkString); // Chama a função para processar o link
+
+  // Mapeamento de ícones e textos
+  const platforms = {
+    'site': { icon: 'bi-browser-chrome', text: 'Acessar o Site' },
+    'android': { icon: 'bi-android', text: 'Baixar app Android' },
+    'ios': { icon: 'bi-apple', text: 'Baixar app iOS' },
+    'windows': { icon: 'bi-windows', text: 'Baixar app Windows' }
+  };
+
+  // Gerar HTML dos links para todas as divs com a classe 'links-container'
+  const containers = document.querySelectorAll('.links-container');
+  containers.forEach(container => {
+    for (const [platform, details] of Object.entries(platforms)) {
+      if (links[platform]) {
+        const span = document.createElement('div');
+        span.className = 'col-md-auto';
+        span.innerHTML = `
+          <a href="${links[platform]}" rel="nofollow noopener" target="_blank" class="btn btn-default btn-lg w-100">
+            <i class="bi ${details.icon}"></i> ${details.text}
+          </a>
+        `;
+        container.appendChild(span);
+      }
+    }
+  });
+</script>
+<script>
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+  const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+  const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+</script>
+
+{% endblock %}

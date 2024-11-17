@@ -1,0 +1,13 @@
+#version: '3'
+
+services:
+  node:
+    container_name: nodejs-eleventy
+    image: node:alpine
+    working_dir: /root
+    volumes:
+      - .:/root
+    ports:
+      - "8080:8080"   # Porta do Eleventy
+    tty: true
+    

@@ -1,193 +1,194 @@
-/***
+// processar-conteudo.js
 
-  Este script prepara os conteúdos para a criação do site estático com "@11ty/eleventy".
-  - transforma os arquivos .csv do diretório "conteudo" em arquivos .md no diretório de trabalho ("src").
-  - copia os arquivos .md do diretório "conteudo" para o diretório de trabalho ("src").
-  
-***/
-
-const fs = require('fs');
 const csv = require('csvtojson');
+const fs = require('fs');
 const path = require('path');
+const yaml = require('js-yaml');
+const matter = require('gray-matter'); // Import gray-matter
 
-// Função para sanitizar strings para serem usadas em nomes de arquivos
-function sanitizeFilename(str) {
-  return str
+// Paths
+const conteudoDir = path.join(__dirname, 'conteudo');
+const srcDir = path.join(__dirname, 'src');
+const siteDir = path.join(__dirname, 'docs');
+const tecnologiasCsvPath = path.join(conteudoDir, 'tecnologias.csv');
+const recursosCsvPath = path.join(conteudoDir, 'recursos.csv');
+
+// Function to delete a directory or file if it exists
+function deletePath(targetPath) {
+  if (fs.existsSync(targetPath)) {
+    fs.rmSync(targetPath, { recursive: true, force: true });
+    console.log(`Deleted: ${targetPath}`);
+  }
+}
+
+// Delete 'docs' directory
+deletePath(siteDir);
+deletePath(srcDir);
+
+// Ensure src directory exists
+if (!fs.existsSync(srcDir)) fs.mkdirSync(srcDir, { recursive: true });
+
+// Helper function to slugify text
+function slugify(text) {
+  return text
     .toString()
-    .normalize('NFD')                   // Normaliza a string
-    .replace(/[\u0300-\u036f]/g, '')    // Remove acentos
-    .replace(/\s+/g, '-')               // Substitui espaços por hífens
-    .replace(/[^a-zA-Z0-9\-]/g, '')     // Remove caracteres especiais
-    .replace(/\-+/g, '-')               // Remove múltiplos hífens
-    .toLowerCase();                     // Converte para minúsculas
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '');
 }
 
-// Função para escapar valores do YAML
-function yamlEscape(str) {
-  if (typeof str !== 'string') {
-    return str;
-  }
-  return `"${str.replace(/"/g, '\\"')}"`;
-}
-
-// Função para copiar arquivos .md de conteudo para src
+// Function to copy all .md files from conteudo to src
 function copyMarkdownFiles() {
-  const sourceDir = './conteudo/';
-  const targetDir = './src/';
-
-  // Verifica se o diretório de destino existe, caso contrário, cria
-  if (!fs.existsSync(targetDir)) {
-    fs.mkdirSync(targetDir, { recursive: true });
-  }
-
-  // Lê todos os arquivos do diretório de origem
-  fs.readdir(sourceDir, (err, files) => {
-    if (err) {
-      console.error('Erro ao ler o diretório de origem:', err);
-      return;
-    }
-
-    files.forEach(file => {
-      if (path.extname(file) === '.md') {
-        // Copia o arquivo para o diretório de destino
-        fs.copyFileSync(path.join(sourceDir, file), path.join(targetDir, file));
-        console.log(`Arquivo ${file} copiado para ${targetDir}`);
+  const files = fs.readdirSync(conteudoDir);
+  files.forEach((file) => {
+    if (file.endsWith('.md')) {
+      const sourcePath = path.join(conteudoDir, file);
+      let destPath;
+      if (file === 'index.md') {
+        // Copy index.md directly to src/
+        destPath = path.join(srcDir, file);
+      } else {
+        // Copy other .md files to src/paginas/
+        const paginasDir = path.join(srcDir, 'paginas');
+        if (!fs.existsSync(paginasDir)) fs.mkdirSync(paginasDir, { recursive: true });
+        destPath = path.join(paginasDir, file);
       }
-    });
+
+      // Read the content and parse front matter
+      const fileContent = fs.readFileSync(sourcePath, 'utf-8');
+      const parsed = matter(fileContent);
+      const existingFrontMatter = parsed.data;
+      const contentBody = parsed.content;
+
+      // Extract title from filename (if title not already provided)
+      const titleFromFilename = file
+        .replace('.md', '')
+        .replace(/-/g, ' ')
+        .replace(/\b\w/g, (l) => l.toUpperCase());
+
+      // Build the front matter object
+      const frontMatter = {
+        layout: file === 'index.md' ? 'index.njk' : 'paginas.njk',
+        title: existingFrontMatter.title || titleFromFilename,
+      };
+
+      // Merge frontMatter into existingFrontMatter (your frontMatter takes precedence)
+      const mergedFrontMatter = {
+        ...existingFrontMatter,
+        ...frontMatter,
+      };
+
+      // Reconstruct the file with merged front matter
+      const pageContent = matter.stringify(contentBody.trim(), mergedFrontMatter);
+      fs.writeFileSync(destPath, pageContent);
+    }
   });
 }
 
-// Chama a função para copiar os arquivos .md
+// Process tecnologias.csv
+function processTecnologias() {
+  const tecnologiasDir = path.join(srcDir, 'tecnologias');
+  const tecnologiasDataDir = path.join(srcDir, '_data');
+  if (!fs.existsSync(tecnologiasDir)) fs.mkdirSync(tecnologiasDir, { recursive: true });
+  if (!fs.existsSync(tecnologiasDataDir)) fs.mkdirSync(tecnologiasDataDir, { recursive: true });
+
+  csv()
+    .fromFile(tecnologiasCsvPath)
+    .then((tecnologias) => {
+      // Write the tecnologias data to a JSON file
+      const tecnologiasDataPath = path.join(tecnologiasDataDir, 'tecnologias.json');
+      fs.writeFileSync(tecnologiasDataPath, JSON.stringify(tecnologias, null, 2));
+
+      tecnologias.forEach((tec) => {
+        const filename = `${tec.slug || tec.id}.md`;
+        const filepath = path.join(tecnologiasDir, filename);
+
+        // Build the front matter object
+        const frontMatter = {
+          layout: 'tecnologia.njk',
+          titulo: tec.titulo,
+          id: tec.id,
+          descricao: tec.descricao,
+          apresentacao: tec.apresentacao,
+          orientacao: tec.orientacao,
+          dicas: tec.dicas,
+          etapas_justificativa: tec.etapas_justificativa,
+          imagem: tec.imagem,
+          slug: tec.slug,
+          destaque: tec.destaque,
+          categoria: tec.categoria,
+          categoria_descricao: tec.categoria_descricao,
+          custo: tec.custo,
+          requer_internet: tec.requer_internet,
+          etapas: tec.etapas,
+          plataformas: tec.plataformas,
+          autor: tec.autor,
+          autor_contato: tec.autor_contato,
+          link: tec.link,
+          origem: tec.origem
+        };
+
+        // Convert front matter object to YAML string
+        const frontMatterYAML = yaml.dump(frontMatter);
+
+        const content = `---
+${frontMatterYAML}---
+${tec.descricao}
+`;
+        fs.writeFileSync(filepath, content);
+      });
+    })
+    .catch((error) => {
+      console.error('Error processing tecnologias.csv:', error);
+    });
+}
+
+// Process recursos.csv
+function processRecursos() {
+  const recursosDataDir = path.join(srcDir, '_data');
+  if (!fs.existsSync(recursosDataDir)) fs.mkdirSync(recursosDataDir, { recursive: true });
+
+  csv()
+    .fromFile(recursosCsvPath)
+    .then((recursos) => {
+      // Write the recursos data to a JSON file
+      const recursosDataPath = path.join(recursosDataDir, 'recursos.json');
+      fs.writeFileSync(recursosDataPath, JSON.stringify(recursos, null, 2));
+
+      // Group recursos by category
+      const recursosByCategory = recursos.reduce((acc, recurso) => {
+        const category = recurso.categoria || 'Uncategorized';
+        if (!acc[category]) acc[category] = [];
+        acc[category].push(recurso);
+        return acc;
+      }, {});
+
+      const categorias = Object.keys(recursosByCategory);
+
+      // Build the front matter object with categorias only
+      const frontMatter = {
+        layout: 'recursos.njk',
+        title: 'Recursos',
+        categorias: categorias,
+      };
+
+      const frontMatterYAML = yaml.dump(frontMatter);
+
+      // Generate content
+      let content = `---
+${frontMatterYAML}---
+`;
+
+      const recursosPath = path.join(srcDir, 'recursos.md');
+      fs.writeFileSync(recursosPath, content);
+    })
+    .catch((error) => {
+      console.error('Error processing recursos.csv:', error);
+    });
+}
+
+// Run the functions
 copyMarkdownFiles();
-
-// Função para converter tecnologias.csv
-csv()
-  .fromFile('./conteudo/tecnologias.csv')
-  .then((jsonObj) => {
-    // Criar diretório para tecnologias
-    if (!fs.existsSync('./src/tecnologias')) {
-      fs.mkdirSync('./src/tecnologias', { recursive: true });
-    }
-
-    // Obter categorias únicas e suas descrições
-    const categoriasMap = new Map();
-    jsonObj.forEach(item => {
-      const categoria = item.categoria;
-      const descricaoCategoria = item.descricao_categoria || '';
-      if (!categoriasMap.has(categoria)) {
-        categoriasMap.set(categoria, descricaoCategoria);
-      }
-    });
-
-    // Criar arquivos de categoria
-    categoriasMap.forEach((descricaoCategoria, categoria) => {
-      const slugCategoria = sanitizeFilename(categoria);
-      const tecnologiasCategoria = jsonObj.filter(item => item.categoria === categoria);
-
-      // Criar arquivo Markdown para a categoria
-      const categoriaContent = `---
-layout: categoria.njk
-title: ${yamlEscape(categoria)}
-categoria: ${yamlEscape(categoria)}
-descricao_categoria: ${yamlEscape(descricaoCategoria)}
-permalink: /tecnologias-${slugCategoria}/
----
-`;
-
-      fs.writeFileSync(`./src/tecnologias-${slugCategoria}.md`, categoriaContent);
-      console.log(`Arquivo tecnologias-${slugCategoria}.md criado em ./src/`);
-
-      // Criar arquivos Markdown para cada tecnologia
-      tecnologiasCategoria.forEach(tecnologia => {
-        const slugTecnologia = tecnologia.slug ? sanitizeFilename(tecnologia.slug) : sanitizeFilename(tecnologia.titulo);
-
-        const tecnologiaContent = `---
-layout: tecnologia.njk
-title: ${yamlEscape(tecnologia.titulo)}
-titulo: ${yamlEscape(tecnologia.titulo)}
-slug: ${slugTecnologia}
-categoria: ${yamlEscape(tecnologia.categoria)}
-imagem: ${yamlEscape(tecnologia.imagem)}
-descricao: ${yamlEscape(tecnologia.descricao)}
-orientacao: ${yamlEscape(tecnologia.orientacao)}
-dicas: ${yamlEscape(tecnologia.dicas)}
-etapas_justificativa: ${yamlEscape(tecnologia.etapas_justificativa)}
-custo: ${yamlEscape(tecnologia.custo)}
-requer_internet: ${yamlEscape(tecnologia.requer_internet)}
-etapas: ${yamlEscape(tecnologia.etapas)}
-plataformas: ${yamlEscape(tecnologia.plataformas)}
-autor: ${yamlEscape(tecnologia.autor)}
-autor_contato: ${yamlEscape(tecnologia.autor_contato)}
-link: ${yamlEscape(tecnologia.link)}
-permalink: /tecnologias/${slugTecnologia}/
----
-${tecnologia.descricao}
-`;
-
-        fs.writeFileSync(`./src/tecnologias/${slugTecnologia}.md`, tecnologiaContent);
-        console.log(`Arquivo ${slugTecnologia}.md criado em ./src/tecnologias/`);
-
-      });
-    });
-
-
-    // Criar índice de tecnologias
-    const indexContent = `---
-layout: tecnologias.njk
-title: Tecnologias
-permalink: /tecnologias/
----
-`;
-
-    fs.writeFileSync('./src/tecnologias.md', indexContent);
-    console.log(`Arquivo tecnologias.md criado em ./src/`);
-  });
-
-// Função para converter recursos.csv
-csv()
-  .fromFile('./conteudo/recursos.csv')
-  .then((jsonObj) => {
-    // Obter categorias únicas
-    const categorias = [...new Set(jsonObj.map(item => item.categoria))];
-
-    // Criar índice de recursos
-    const indexContent = `---
-layout: recursos.njk
-title: Recursos
-permalink: /recursos/
----
-`;
-
-    fs.writeFileSync('./src/recursos.md', indexContent);
-    console.log(`Arquivo recursos.md criado em ./src/`);
-
-    // Criar arquivos Markdown para cada categoria de recursos
-    categorias.forEach(categoria => {
-      const slugCategoria = sanitizeFilename(categoria);
-      const recursosCategoria = jsonObj.filter(item => item.categoria === categoria);
-
-      // Criar conteúdo Markdown com a lista de recursos da categoria
-      let recursosList = '';
-      recursosCategoria.forEach(recurso => {
-        recursosList += `- **${recurso.titulo}**
-  - Plataforma: ${recurso.plataforma}
-  - Descrição: ${recurso.descricao}
-  - Link: [Acesse aqui](${recurso.link})
-
-`;
-      });
-
-      // Criar arquivo Markdown para a categoria
-      const categoriaContent = `---
-layout: recurso-categoria.njk
-title: ${yamlEscape(categoria)}
-categoria: ${yamlEscape(categoria)}
-permalink: /recursos-${slugCategoria}/
----
-${recursosList}
-`;
-
-      fs.writeFileSync(`./src/recursos-${slugCategoria}.md`, categoriaContent);
-      console.log(`Arquivo recursos-${slugCategoria}.md criado em ./src/`);
-    });
-  });
+processTecnologias();
+processRecursos();
